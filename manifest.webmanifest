@@ -1,15 +1,15 @@
 {
-    "name": "Gestion bar & snack",
-    "short_name": "GESBAR",
-	"description": "Application de gestion des ventes et du stock de boissons pour bar, snack, buvette et restaurant",
+    "name": "Gestion transit",
+    "short_name": "GESTRANS",
+	"description": "Application de gestion de l'activité du transitaire, réception des colis, liste des envois",
 	"lang": "fr",
 	"dir": "ltr",
     "theme_color": "#000000",
     "background_color": "#ffffff",
     "display": "fullscreen",
 	"orientation": "portrait",
-    "start_url": "/gestion_bar_snack/index.htm",
-    "id": "/gestion_bar_snack",
+    "start_url": "/transitaire/index.htm",
+    "id": "/transitaire",
     "icons": [
 		{
 			"src": "images/logo.png",
