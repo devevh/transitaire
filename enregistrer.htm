@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<title>Gestion transitaire &copy; DEVEVH</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#000000">
+	<meta name="description" content="
+	Application Web Progressive (PWA) de gestion de l'activité de transit.
+	Installable, elle fonctionne même sans accès au réseau internet, connexion obligatoire uniquement pour l'installation.
+	Cette application simple, rapide, conviviale et intuitive permet d'éviter les erreurs de saisie et de calcul, les oublis.
+	Elle est personnalisable sur demande, pour changer les couleurs ou afficher un logo ou bien ajuster le catalogue des produits.
+	Cette démo est une brique d'un système complet, global, gérable en ligne pour gérer les achats, la paie, la comptabilité.
+	Scalable pour un établissement ou une chaine internationale, pour tous les domaines d'activité : hotel, restaurant, activités sportives.
+	Contact par mail : dev.vincenth@gmail.com, par whatsApp : +33 7 60 31 72 62">
+	<meta name="robots" content="noindex, nofollow">
+	<link rel="stylesheet" href="./css/w3.css">
+	<link rel="stylesheet" href="./css/w3color.css">
+	<link rel="manifest" href="manifest.webmanifest">
+	<link rel="shortcut icon" href="./images/favicon.ico">
+	<link rel="apple-touch-icon" href="./images/logo192blanc.png">
+	<!-- fonctions spécifiques -->
+	<script src="./donnees.js"></script>
+	<script src="./fonctions.js"></script>
+	<script>
+		/*let r = stringToHash(document.referrer);
+		if (r != -136531519) {
+			alert("Accès non autorisé, retour à la page précédente");
+			window.location.assign("https://google.fr");
+		} */
+	</script>
+	<noscript>
+	<meta name="theme-color" content="#FF0000">
+	</noscript>
+</head>
+<body class="w3-content w3-center " style="max-width:1200px">
+<noscript>
+<h1>Votre navigateur ne supporte pas javascript ou bien javascript est désactivé</h1>
+<p> l'application ne pourra pas fonctionner ni être installée</p>
+</noscript>
+<nav class="w3-container w3-top" style="background-color: #f4f3f1">
+<ul class="w3-ul-menu-d w3-large">
+	<li class="btnInstall w3-orange w3-hide" id="btnInstall">Installer l'application GESTRANS</li>
+	<li id="accueil">Accueil</li>
+	<li id="quitter">Quitter</li>
+	<li id="aide">Aide</li>
+</ul>
+</nav>
+<!-- !PAGE CONTENT! -->
+<div class="w3-main">
+<!-- Push down content on small screens -->
+<!-- <div class="w3-hide-large w3-margin-top-small" ></div> -->
+<header class="w3-xlarge" >
+	<div class="w3-padding-top-32 w3-wide">Saisie d'un colis</div>
+</header>
+<!-- formulaire de saisie d'un colis -->
+<div class="w3-container" style="padding:16px" id="saisie">
+	<fieldset class="w3-row w3-border" id="exp"><legend>Expéditeur</legend>
+		<div class="w3-col" >
+			<label for="nomexp">Nom</label><input class="w3-input" type="text" id="nomexp" >
+			<label for="telexp">Téléphone</label><input class="w3-input" type="number" id="telexp">
+		</div>
+	</fieldset>
+	<fieldset class="w3-row w3-border" id="exp"><legend>Destinataire</legend>
+		<div class="w3-col" >
+			<label for="nomdest">Nom</label><input class="w3-input" type="text" id="nomdest" >
+			<label for="teldest">Téléphone</label><input class="w3-input" type="number" id="teldest">
+			<label for="lieudest">Lieu</label><input class="w3-input" type="text" id="lieudest">
+		</div>
+	</fieldset>
+	<fieldset class="w3-row w3-border" id="exp"><legend>Colis</legend>
+		<div class="w3-col" >
+			<label for="desc">Description</label><input class="w3-input" type="text" id="desc" >
+			<label for="poids">Poids</label><input class="w3-input" type="number" id="poids">
+		</div>
+	</fieldset>
+	<div class="w3-row w3-border" id="montant">
+		<div class="w3-col" >
+			<label for="montant">montant</label><input class="w3-input" type="number" id="montant" >
+		</div>
+	</div>
+	<div class="w3-row" id="boutons">
+		<div class="w3-col" >
+			<label for="datexp">Date d'envoi</label><input class="w3-input" type="date" id="datexp">
+			<button>Enregistrer</button>
+			<button>Annuler</button>
+		</div>
+	</div>
+</div>
+<!-- End page content -->
+
+<!-- copyright -->
+<p class="w3-codespan w3-small">&copy; Tous droits réservés 2022 - <a href:"mailto:dev.vincenth@gmail.com">dev.vincenth@gmail.com</a></p>
+
+<!-- modales -->
+<div id="modaleAide" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 ">
+		<header class="w3-container"> 
+			<h2>Mode d'emploi de l'application GESTRANS</h2>
+			<span id="fermerAide" class="w3-button w3-display-topright w3-large"><b>×</b></span>
+		</header>
+		<!--  -->
+		<p>Lorem ipsum quid ergosum...
+		</p>
+		<footer class="w3-container">
+			<p class="w3-codespan w3-small">&copy; Tous droits réservés 2022 - <a href:"mailto:dev.vincenth@gmail.com">dev.vincenth@gmail.com</a></p>
+		</footer>
+    </div>
+</div>
+
+<!-- pwa -->
+<script src="./app.js"></script>
+<script>
+//clic sur le bouton accueil pour aller à l'accueil
+document.getElementById('accueil').addEventListener('click', function(){ window.location.assign("./index.htm")});
+//clic sur le bouton pour quitter l'application
+document.getElementById('quitter').addEventListener('click', function(){ window.close()});
+//clic sur aide pour afficher la modale d'aide
+document.getElementById('aide').addEventListener('click',function(){document.getElementById('modaleAide').style.display='block';});
+//clic sur le x pour fermer la modale de aide
+document.getElementById('fermerAide').addEventListener('click',function(){document.getElementById('modaleAide').style.display='none';});
+</script>
+
+</body>
+</html>
