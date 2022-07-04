@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<title>paramétrage GESTRANS &copy; DEVEVH</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#000000">
+	<meta name="description" content="page de paramétrage de l'application GESTRANS
+	Contact par mail : dev.vincenth@gmail.com, par whatsApp : +33 7 60 31 72 62">
+	<meta name="robots" content="noindex, nofollow">
+	<link rel="stylesheet" href="./css/w3.css">
+	<link rel="stylesheet" href="./css/w3color.css">
+	<link rel="manifest" href="manifest.webmanifest">
+	<link rel="shortcut icon" href="./images/favicon.ico">
+	<link rel="apple-touch-icon" href="./images/logo192blanc.png">
+	<!-- fonctions spécifiques -->
+	<script src="./fonctions.js"></script>
+	<noscript>
+	<meta name="theme-color" content="#FF0000">
+	</noscript>
+	<style>
+	.w3-table-all-2{border-collapse:collapse;border-spacing:0;width:100%;display:table;border:1px solid #ccc}
+	.w3-table-all-2 td,.w3-table-all-2 th{padding:8px 8px;display:table-cell;text-align:center;vertical-align:top;border:1px solid #ccc}
+	.w3-table-all-2 td:hover{background-color:#ccc;color:white}
+	.date-active{background-color:#0066cc;color:white}
+	</style>
+</head>
+<body class="w3-content w3-center " style="max-width:1200px">
+<noscript>
+<h1>Votre navigateur ne supporte pas javascript ou bien javascript est désactivé</h1>
+<p> l'application ne pourra pas fonctionner ni être installée</p>
+</noscript>
+<nav class="w3-container w3-top" style="background-color: #f4f3f1">
+<ul class="w3-ul-menu-d w3-large">
+	<li class="btnInstall w3-orange w3-hide" id="btnInstall">Installer l'application GESTRANS</li>
+	<li id="accueil">Accueil</li>
+	<li id="quitter">Quitter</li>
+	<li id="aide">Aide</li>
+</ul>
+</nav>
+<!-- !PAGE CONTENT! -->
+<div class="w3-main">
+<header class="w3-xlarge" >
+	<div class="w3-padding-top-32 w3-wide">Paramétrage</div>
+</header>
+<!-- parametres proposés lors de l'enregistrement d'un colis -->
+<!-- dates -->
+<div id="dates" class="w3-container w3-row w3-center">
+<fieldset><legend>Dates d'expédition à venir</legend>
+<table class="w3-table-all-2" id="calendrier">
+<tr><th colspan=7><i class="w3-margin-right" onclick="afficherMois(-1)">&lt;</i>mois<i class="w3-margin-left" onclick="afficherMois(+1)">&gt;</i></th></tr>
+<tr>
+	<td id="j01" class="jour" onclick="activerJour(this.id)">01</td>
+	<td id="j02" class="jour" onclick="activerJour(this.id)">02</td>
+	<td id="j03" class="jour" onclick="activerJour(this.id)">03</td>
+	<td id="j04" class="jour" onclick="activerJour(this.id)">04</td>
+	<td id="j05" class="jour" onclick="activerJour(this.id)">05</td>
+	<td id="j06" class="jour" onclick="activerJour(this.id)">06</td>
+	<td id="j07" class="jour" onclick="activerJour(this.id)">07</td>
+</tr>                                                        
+<tr>                                                         
+	<td id="j08" class="jour" onclick="activerJour(this.id)">08</td>
+	<td id="j09" class="jour" onclick="activerJour(this.id)">09</td>
+	<td id="j10" class="jour" onclick="activerJour(this.id)">10</td>
+	<td id="j11" class="jour" onclick="activerJour(this.id)">11</td>
+	<td id="j12" class="jour" onclick="activerJour(this.id)">12</td>
+	<td id="j13" class="jour" onclick="activerJour(this.id)">13</td>
+	<td id="j14" class="jour" onclick="activerJour(this.id)">14</td>
+</tr>                                                        
+<tr>                                                         
+	<td id="j15" class="jour" onclick="activerJour(this.id)">15</td>
+	<td id="j16" class="jour" onclick="activerJour(this.id)">16</td>
+	<td id="j17" class="jour" onclick="activerJour(this.id)">17</td>
+	<td id="j18" class="jour" onclick="activerJour(this.id)">18</td>
+	<td id="j19" class="jour" onclick="activerJour(this.id)">19</td>
+	<td id="j20" class="jour" onclick="activerJour(this.id)">20</td>
+	<td id="j21" class="jour" onclick="activerJour(this.id)">21</td>
+</tr>                                                        
+<tr>                                                         
+	<td id="j22" class="jour" onclick="activerJour(this.id)">22</td>
+	<td id="j23" class="jour" onclick="activerJour(this.id)">23</td>
+	<td id="j24" class="jour" onclick="activerJour(this.id)">24</td>
+	<td id="j25" class="jour" onclick="activerJour(this.id)">25</td>
+	<td id="j26" class="jour" onclick="activerJour(this.id)">26</td>
+	<td id="j27" class="jour" onclick="activerJour(this.id)">27</td>
+	<td id="j28" class="jour" onclick="activerJour(this.id)">28</td>
+</tr>                                                        
+<tr>                                                         
+	<td id="j29" class="jour" onclick="activerJour(this.id)">29</td>
+	<td id="j30" class="jour" onclick="activerJour(this.id)">30</td>
+	<td id="j31" class="jour" onclick="activerJour(this.id)">31</td>
+	<td id="j32" class="jour" onclick="activerJour(this.id)">32</td>
+	<td id="j33" class="jour" onclick="activerJour(this.id)">33</td>
+	<td id="j34" class="jour" onclick="activerJour(this.id)">34</td>
+	<td id="j35" class="jour" onclick="activerJour(this.id)">35</td>
+</tr>
+</table>
+</fieldset>
+</div>
+<!-- lieux -->
+<div id="lieux" class="w3-container w3-row">
+<fieldset><legend>Lieux d'expédition</legend>
+<p>Cocher la case pour activer le lieu</p>
+<div class="w3-col s2"><input id="lieu" type="checkbox" class="" name="lbv" value="lbv"></div><div class="w3-col s10 w3-left-align"><label for="lbv">Libreville</label></div>
+<div class="w3-col s2"><input id="lieu" type="checkbox" class="" name="pog" value="pog"></div><div class="w3-col s10 w3-left-align"><label for="pog">Port-Gentil</label></div>
+<button class="W3-button">Nouveau lieu ?</button>
+</fieldset>
+</div>
+<!--  -->
+<!-- End page content -->
+</div>
+
+<!-- copyright -->
+<p class="w3-codespan w3-small">&copy; Tous droits réservés 2022 - <a href:"mailto:dev.vincenth@gmail.com">dev.vincenth@gmail.com</a></p>
+
+<!-- modales -->
+<div id="modaleAide" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 ">
+		<header class="w3-container"> 
+			<h2>Mode d'emploi de l'application GESTRANS</h2>
+			<span id="fermerAide" class="w3-button w3-display-topright w3-large"><b>×</b></span>
+		</header>
+		<!--  -->
+		<p>Lorem ipsum quid ergosum...
+		</p>
+		<footer class="w3-container">
+			<p class="w3-codespan w3-small">&copy; Tous droits réservés 2022 - <a href:"mailto:dev.vincenth@gmail.com">dev.vincenth@gmail.com</a></p>
+		</footer>
+    </div>
+</div>
+
+<!-- pwa -->
+<script src="./app.js"></script>
+<script src="./eventListener.js"></script>
+<script>
+function activerJour(jour) {
+	var td=document.getElementById(jour);
+	if (td.className.indexOf("date-active") == -1) {
+		td.className = "date-active";
+		//appeler la fonction de mise à jour du tableau des jours actifs pour ajouter le jour
+	} 
+	else {
+		td.className = "";
+		//appeler la fonction de mise à jour du tableau des jours actifs pour supprimer le jour
+		//appeler la fonction de mise à jour du tableau des jours actifs pour supprimer le jour
+	}
+}
+</script>
+</body>
+</html>
