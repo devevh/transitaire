@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<title>Gestion transitaire &copy; DEVEVH</title>
+	<title>Accueil GESTRANS &copy; DEVEVH</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#000000">
 	<meta name="description" content="
-	Application Web Progressive (PWA) de gestion de l'activité de transit.
+	Application Web Progressive (PWA) de gestion de l'activité de transitaire.
 	Installable, elle fonctionne même sans accès au réseau internet, connexion obligatoire uniquement pour l'installation.
 	Cette application simple, rapide, conviviale et intuitive permet d'éviter les erreurs de saisie et de calcul, les oublis.
 	Elle est personnalisable sur demande, pour changer les couleurs ou afficher un logo ou bien ajuster le catalogue des produits.
@@ -60,7 +60,7 @@
 	</div>
 </div>
 <!-- End page content -->
-
+</div>
 
 <!-- copyright -->
 <p class="w3-codespan w3-small">&copy; Tous droits réservés 2022 - <a href:"mailto:dev.vincenth@gmail.com">dev.vincenth@gmail.com</a></p>
@@ -84,16 +84,6 @@
 
 <!-- pwa -->
 <script src="./app.js"></script>
-<script>
-//clic sur le bouton accueil pour aller à l'accueil
-document.getElementById('accueil').addEventListener('click', function(){ window.location.assign("./index.htm")});
-//clic sur le bouton pour quitter l'application
-document.getElementById('quitter').addEventListener('click', function(){ window.close()});
-//clic sur aide pour afficher la modale d'aide
-document.getElementById('aide').addEventListener('click',function(){document.getElementById('modaleAide').style.display='block';});
-//clic sur le x pour fermer la modale de aide
-document.getElementById('fermerAide').addEventListener('click',function(){document.getElementById('modaleAide').style.display='none';});
-</script>
-
+<script src="./eventListener.js"></script>
 </body>
 </html>
