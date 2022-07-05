@@ -15,6 +15,7 @@
 	<link rel="apple-touch-icon" href="./images/logo192blanc.png">
 	<!-- fonctions spécifiques -->
 	<script src="./fonctions.js"></script>
+	<script src="./donnees.js"></script>
 	<noscript>
 	<meta name="theme-color" content="#FF0000">
 	</noscript>
@@ -47,8 +48,34 @@
 <!-- dates -->
 <div id="dates" class="w3-container w3-row w3-center">
 <fieldset><legend>Dates d'expédition à venir</legend>
-<table class="w3-table-all-2" id="calendrier">
-<tr><th colspan=7><i class="w3-margin-right" onclick="afficherMois(-1)">&lt;</i>mois<i class="w3-margin-left" onclick="afficherMois(+1)">&gt;</i></th></tr>
+<span>Toucher les jours à activer</span>
+<table id="calendrier" class="w3-table-all-2">
+<tr>
+	<th colspan=7>
+		<!-- <a href="#" class="w3-margin-right" onclick="afficherMois(-1)">&lt;</a>mois<a href="#" class="w3-margin-left" onclick="afficherMois(+1)">&gt;</a> -->
+		<!-- afficherMois() permet de rendre dynamique le bon nomùbre de jour en fonction du mois et de l'année -->
+		<select id="mois" onchange="afficherMois()">
+			<option value="0">Janvier</option>
+			<option value="1">Février</option>
+			<option value="2">Mars</option>
+			<option value="3">Avril</option>
+			<option value="4">Mai</option>
+			<option value="5">Juin</option>
+			<option value="6">Juillet</option>
+			<option value="7">Aout</option>
+			<option value="8">Septembre</option>
+			<option value="9">Octobre</option>
+			<option value="10">Novembre</option>
+			<option value="11">Décembre</option>
+		</select>
+		<select id="annee" onchange="afficherMois()">
+			<option value="2022">2022</option>
+			<option value="2023">2023</option>
+			<option value="2024">2024</option>
+			<option value="2025">2025</option>
+		</select>
+	</th>
+</tr>
 <tr>
 	<td id="j01" class="jour" onclick="activerJour(this.id)">01</td>
 	<td id="j02" class="jour" onclick="activerJour(this.id)">02</td>
@@ -89,21 +116,31 @@
 	<td id="j29" class="jour" onclick="activerJour(this.id)">29</td>
 	<td id="j30" class="jour" onclick="activerJour(this.id)">30</td>
 	<td id="j31" class="jour" onclick="activerJour(this.id)">31</td>
-	<td id="j32" class="jour" onclick="activerJour(this.id)">32</td>
-	<td id="j33" class="jour" onclick="activerJour(this.id)">33</td>
-	<td id="j34" class="jour" onclick="activerJour(this.id)">34</td>
-	<td id="j35" class="jour" onclick="activerJour(this.id)">35</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
 </tr>
 </table>
 </fieldset>
 </div>
 <!-- lieux -->
-<div id="lieux" class="w3-container w3-row">
+<div id="listelieux" class="w3-container">
 <fieldset><legend>Lieux d'expédition</legend>
-<p>Cocher la case pour activer le lieu</p>
-<div class="w3-col s2"><input id="lieu" type="checkbox" class="" name="lbv" value="lbv"></div><div class="w3-col s10 w3-left-align"><label for="lbv">Libreville</label></div>
-<div class="w3-col s2"><input id="lieu" type="checkbox" class="" name="pog" value="pog"></div><div class="w3-col s10 w3-left-align"><label for="pog">Port-Gentil</label></div>
-<button class="W3-button">Nouveau lieu ?</button>
+<span>Cocher la case pour activer le lieu</span>
+<!-- construire cette liste à partir des données du stockage local -->
+<div id="divlbv" class="w3-row">
+	<div class="w3-col s2"><input id="lieu" type="checkbox" class="" name="lbv" value="lbv"></div>
+	<div class="w3-col s10 w3-left-align"><label for="lbv">Libreville</label></div>
+</div>
+<div id="divpog" class="w3-row">
+	<div class="w3-col s2"><input id="lieu" type="checkbox" class="" name="pog" value="pog"></div>
+	<div class="w3-col s10 w3-left-align"><label for="pog">Port-Gentil</label></div>
+</div>
+<div id="divnew" class="w3-row">
+	<div class="w3-col s2"><label for="nouveauLieu" class="w3-xlarge" onclick="ajouterLieu()">+</label></div>
+	<div class="w3-col s10"><input type="text" id="nouveauLieu" class="w3-input" placeholder="nouveau lieu"></div>
+</div>
 </fieldset>
 </div>
 <!--  -->
@@ -128,7 +165,22 @@
 		</footer>
     </div>
 </div>
-
+<!-- modales -->
+<div id="modaleAjouterLieu" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 ">
+		<header class="w3-container"> 
+			<h2>Ajouter un lieu</h2>
+			<span id="fermerAjouterLieu" class="w3-button w3-display-topright w3-large"><b>×</b></span>
+		</header>
+		<!--  -->
+		
+		<p>Lorem ipsum quid ergosum...
+		</p>
+		<footer class="w3-container">
+			<p class="w3-codespan w3-small">&copy; Tous droits réservés 2022 - <a href:"mailto:dev.vincenth@gmail.com">dev.vincenth@gmail.com</a></p>
+		</footer>
+    </div>
+</div>
 <!-- pwa -->
 <script src="./app.js"></script>
 <script src="./eventListener.js"></script>
