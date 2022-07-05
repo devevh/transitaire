@@ -3,5 +3,5 @@
 /**************************************************************************************/
 const anneebi=[31,29,31,30,31,30,31,31,30,31,30,31];
 const anneenonbi=[31,28,31,30,31,30,31,31,30,31,30,31];
-const annee = [anneebi,annéenonbi];
+const annee = [anneebi,anneenonbi];
 const init = '{"stock":0,"vente":0,"prix":0}';

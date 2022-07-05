@@ -49,6 +49,19 @@ function creerElement(idParent,typeElement,idElmt,classe,texte) {
 	elmt.setAttribute("class", classe);
 	if (texte>"") elmt.appendChild(document.createTextNode(texte));
 	document.getElementById(idParent).appendChild(elmt);
+	//insertBefore
+	//var parent=document.getElementById(idParent);
+	//parent.insertBefore(elmt,parent.lastChild);
+}
+function creerElementAvantDernier(idParent,typeElement,idElmt,classe,texte) {
+	var elmt = document.createElement(typeElement);
+	elmt.setAttribute("id", idElmt);
+	elmt.setAttribute("class", classe);
+	if (texte>"") elmt.appendChild(document.createTextNode(texte));
+	//document.getElementById(idParent).appendChild(elmt);
+	//insertBefore
+	var elmtparent=document.getElementById(idParent);
+	elmtparent.insertBefore(elmt,elmtparent.lastElementChild);
 }
 
 /**************************************************************************************/
@@ -67,6 +80,24 @@ function afficherSousMenu(id) {
     div.className = div.className.replace(" w3-show", " w3-hide");
 	v.innerHTML="v";
   }
+}
+
+//ajouter nouveau lieu
+function ajouterLieu(lelieu) {
+	//alert('ajouterLieu');
+	//ajouter la case à cocher du nouveau lieu dans le fieldset listelieux avant la ligne qui permet d'ajouter un lieu
+	creerElementAvantDernier('listelieux','div','div'+lelieu,'w3-row','');
+	creerElement('div'+lelieu,'div','divinput'+lelieu,'w3-col s2','');
+	creerElement('divinput'+lelieu,'input','lieu',lelieu,'');
+	//définir les attributs spécifiques de l'input pour préciser le type checkbox
+	elmt=document.getElementsByClassName(lelieu)[0];
+		elmt.setAttribute("type", "checkbox");
+		elmt.setAttribute("name", lelieu);
+		elmt.setAttribute("value", lelieu);
+	creerElement('div'+lelieu,'div','divlabel'+lelieu,'w3-col s10 w3-left-align','');
+	creerElement('divlabel'+lelieu,'label','','',lelieu);
+	elmt=document.getElementById('divlabel'+lelieu);
+		elmt.setAttribute("for", lelieu);
 }
 
 /**************************************************************************************/
