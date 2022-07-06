@@ -20,6 +20,34 @@ function enleverClasseVente(truc) {
 	if (truc.className.indexOf(" vente") > 0) truc.className = truc.className.replace(" vente", "");
 }
 
+
+function activerJour(jour) {
+	var td=document.getElementById(jour);
+	if (td.className.indexOf("date-active") == -1) {
+		td.className += " date-active";
+		//appeler la fonction de mise à jour du tableau des jours actifs pour ajouter le jour
+	} 
+	else {
+		td.className = td.className.replace(" date-active","");
+		//appeler la fonction de mise à jour du tableau des jours actifs pour supprimer le jour
+	}
+}
+
+let ANNEE=[];
+function bissextile(annee) {
+	var modulo4, modulo100, modulo400;
+	modulo4 = annee - Math.trunc(annee/4)*4;
+	//modulo100 = annee - Math.trunc(annee/100)*100;
+	modulo400 = annee - Math.trunc(annee/400)*400;
+	if (modulo4 != 0 && modulo400 != 0) {
+		ANNEE = ANNEENONBI;
+	}
+	else {
+		ANNEE = ANNEEBI;
+	}
+	
+}
+
 function gestionAffichage(truc) {
 	let DId, PId, SId;
 	//gestion de l'affichage du truc
@@ -88,18 +116,57 @@ function ajouterLieu(lelieu) {
 	//ajouter la case à cocher du nouveau lieu dans le fieldset listelieux avant la ligne qui permet d'ajouter un lieu
 	creerElementAvantDernier('listelieux','div','div'+lelieu,'w3-row','');
 	creerElement('div'+lelieu,'div','divinput'+lelieu,'w3-col s2','');
-	creerElement('divinput'+lelieu,'input','lieu',lelieu,'');
+	//ajouter l'input
+	creerElement('divinput'+lelieu,'input',lelieu,lelieu,'');
 	//définir les attributs spécifiques de l'input pour préciser le type checkbox
-	elmt=document.getElementsByClassName(lelieu)[0];
+	elmt=document.getElementById(lelieu);
 		elmt.setAttribute("type", "checkbox");
 		elmt.setAttribute("name", lelieu);
 		elmt.setAttribute("value", lelieu);
 	creerElement('div'+lelieu,'div','divlabel'+lelieu,'w3-col s10 w3-left-align','');
-	creerElement('divlabel'+lelieu,'label','','',lelieu);
-	elmt=document.getElementById('divlabel'+lelieu);
+	//ajouter le label de l'input
+	creerElement('divlabel'+lelieu,'label','label'+lelieu,'',lelieu);
+	elmt=document.getElementById('label'+lelieu);
 		elmt.setAttribute("for", lelieu);
+	//raz sur la valeur de l'input nouveauLieu
+	document.getElementById('nouveauLieu').value='';
+	
 }
 
+function afficherMois() {
+	var annee = document.getElementById('annee').value;
+	var mois = document.getElementById('mois').value;
+	var jours = document.getElementsByClassName('jour');
+	bissextile(annee);
+	var nbJours = ANNEE[mois];
+	mois++;
+	var d = new Date(annee+"-"+mois+"-01");
+	var offset = d.getDay();
+	//0 = dimanche, 6=samedi
+	if (offset == 0) { 
+	offset = 6;
+	}
+	else {
+		offset--; //lundi=1 -> 0 et samedi=6 -> 5
+	}
+	// i:indice du poste des cases dans le calendrier
+	// j:numéro du jour, incrémenté à partir de offset
+	var j=1;
+	for (i=0;i<41;i++) {
+		if (i < offset) {
+			jours[i].innerHTML= "";
+		}
+		else {
+			if (j <= nbJours) {
+				jours[i].innerHTML=j;
+			}
+			else {
+				jours[i].innerHTML = "";
+			}
+			j++;
+		}
+	}
+}
 /**************************************************************************************/
 //fonctions opérationnelles
 /**************************************************************************************/
