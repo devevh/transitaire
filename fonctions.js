@@ -113,23 +113,25 @@ function afficherSousMenu(id) {
 //ajouter nouveau lieu
 function ajouterLieu(lelieu) {
 	//alert('ajouterLieu');
-	//ajouter la case à cocher du nouveau lieu dans le fieldset listelieux avant la ligne qui permet d'ajouter un lieu
-	creerElementAvantDernier('listelieux','div','div'+lelieu,'w3-row','');
-	creerElement('div'+lelieu,'div','divinput'+lelieu,'w3-col s2','');
-	//ajouter l'input
-	creerElement('divinput'+lelieu,'input',lelieu,lelieu,'');
-	//définir les attributs spécifiques de l'input pour préciser le type checkbox
-	elmt=document.getElementById(lelieu);
-		elmt.setAttribute("type", "checkbox");
-		elmt.setAttribute("name", lelieu);
-		elmt.setAttribute("value", lelieu);
-	creerElement('div'+lelieu,'div','divlabel'+lelieu,'w3-col s10 w3-left-align','');
-	//ajouter le label de l'input
-	creerElement('divlabel'+lelieu,'label','label'+lelieu,'',lelieu);
-	elmt=document.getElementById('label'+lelieu);
-		elmt.setAttribute("for", lelieu);
-	//raz sur la valeur de l'input nouveauLieu
-	document.getElementById('nouveauLieu').value='';
+	if (lelieu != '') {
+		//ajouter la case à cocher du nouveau lieu dans le fieldset listelieux avant la ligne qui permet d'ajouter un lieu
+		creerElementAvantDernier('listelieux','div','div'+lelieu,'w3-row','');
+		creerElement('div'+lelieu,'div','divinput'+lelieu,'w3-col s2','');
+		//ajouter l'input
+		creerElement('divinput'+lelieu,'input',lelieu,lelieu,'');
+		//définir les attributs spécifiques de l'input pour préciser le type checkbox
+		elmt=document.getElementById(lelieu);
+			elmt.setAttribute("type", "checkbox");
+			elmt.setAttribute("name", lelieu);
+			elmt.setAttribute("value", lelieu);
+		creerElement('div'+lelieu,'div','divlabel'+lelieu,'w3-col s10 w3-left-align','');
+		//ajouter le label de l'input
+		creerElement('divlabel'+lelieu,'label','label'+lelieu,'',lelieu);
+		elmt=document.getElementById('label'+lelieu);
+			elmt.setAttribute("for", lelieu);
+		//raz sur la valeur de l'input nouveauLieu
+		document.getElementById('nouveauLieu').value='';
+	}
 	
 }
 
