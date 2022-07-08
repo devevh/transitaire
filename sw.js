@@ -1,10 +1,13 @@
 //variabilisation
-var nomCache='gestrans-v1';
+var nomCache='gesbar-v1';
 var contenuCache=[
  '/transitaire/index.htm'
+ '/transitaire/liste.htm'
+ '/transitaire/enregistrer.htm'
+ '/transitaire/parametres.htm'
 ,'/transitaire/app.js'
 ,'/transitaire/sw.js'
-,'//donnees.js'
+,'/transitaire/donnees.js'
 ,'/transitaire/fonctions.js'
 ,'/transitaire/css/w3.css'
 ,'/transitaire/css/w3color.css'
@@ -12,6 +15,7 @@ var contenuCache=[
 ,'/transitaire/images/logo192blanc.png'
 ,'/transitaire/images/logo512blanc.png'
 ,'/transitaire/images/favicon-256x256.png'
+,'/transitaire/images/GDA_LOGO_TRANSPARENT.png'
 ,'/transitaire/images/favicon.ico'
 ];
 //

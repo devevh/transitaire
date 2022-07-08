@@ -131,6 +131,13 @@
 	<td id="j42" class="jour" onclick="activerJour(this.id)">&nbsp;</td>
 </tr>
 </table>
+	<div class="w3-row w3-margin-top" id="boutons">
+		<div class="w3-col" >
+		<!-- enregistrer permet de stocker automatiquement l'expediteur et le destinataire pour l'afficher plus rapidement lors de la saisie -->
+			<button onclick="enregistrerDatesActives()">Enregistrer</button>
+			<button>Annuler</button>
+		</div>
+	</div>
 </fieldset>
 </div>
 <!-- lieux -->
@@ -139,11 +146,11 @@
 <span>Cocher la case pour activer le lieu</span>
 <!-- construire cette liste à partir des données du stockage local -->
 <div id="divlbv" class="w3-row">
-	<div class="w3-col s2"><input id="lbv" type="checkbox" class="" name="lbv" value="lbv"></div>
+	<div class="w3-col s2"><input id="lbv" type="checkbox" class="lieu" name="lbv" value="lbv"></div>
 	<div class="w3-col s10 w3-left-align"><label for="lbv">Libreville</label></div>
 </div>
 <div id="divpog" class="w3-row">
-	<div class="w3-col s2"><input id="pog" type="checkbox" class="" name="pog" value="pog"></div>
+	<div class="w3-col s2"><input id="pog" type="checkbox" class="lieu" name="pog" value="pog"></div>
 	<div class="w3-col s10 w3-left-align"><label for="pog">Port-Gentil</label></div>
 </div>
 <div id="divnew" class="w3-row">
@@ -151,6 +158,13 @@
 	<div class="w3-col s10"><input type="text" id="nouveauLieu" class="w3-input" placeholder="nouveau lieu" value="" required></div>
 </div>
 </fieldset>
+	<div class="w3-row w3-margin-top" id="boutons">
+		<div class="w3-col" >
+		<!-- enregistrer permet de stocker automatiquement l'expediteur et le destinataire pour l'afficher plus rapidement lors de la saisie -->
+			<button onclick="enregistrerLieuxActifs()">Enregistrer</button>
+			<button>Annuler</button>
+		</div>
+	</div>
 </div>
 <!--  -->
 <!-- End page content -->

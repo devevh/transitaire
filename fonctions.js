@@ -118,7 +118,7 @@ function ajouterLieu(lelieu) {
 		creerElementAvantDernier('listelieux','div','div'+lelieu,'w3-row','');
 		creerElement('div'+lelieu,'div','divinput'+lelieu,'w3-col s2','');
 		//ajouter l'input
-		creerElement('divinput'+lelieu,'input',lelieu,lelieu,'');
+		creerElement('divinput'+lelieu,'input',lelieu,'lieu','');
 		//définir les attributs spécifiques de l'input pour préciser le type checkbox
 		elmt=document.getElementById(lelieu);
 			elmt.setAttribute("type", "checkbox");
@@ -167,6 +167,7 @@ function afficherMois() {
 			}
 			j++;
 		}
+		jours[i].className = jours[i].className.replace(" date-active","");
 	}
 }
 /**************************************************************************************/
@@ -199,41 +200,82 @@ function readValue(quellediv) {
 }
 
 //*************************************************************************************************
-function vendre(truc) {
+function enregistrerColis() {
 //met à jour le stock et la vente de l'article
-//anime le champ stock
-//calcule l'affichage en fonction du stock restant
-	var texte = localStorage.getItem(truc);
-	var obj = JSON.parse(texte);
-	var stocktruc = document.getElementById("reel"+truc+"stock");
-	var divtruc = document.getElementById("div"+truc);
-	var article, articleJSON;
-	var timer;
-	
-	clearTimeout(timer);
-	enleverClasseVente(stocktruc);
-	if (obj.stock > 0) {
-	//si stock suffisant alors la vente est possible : mettre à jour stock et vente
-		obj.vente += 1;
-		obj.stock -= 1;
-		article = { "stock":obj.stock, "vente":obj.vente, "prix":obj.prix };
-		articleJSON = JSON.stringify(article);
+	var d = new Date();
+	var idcolis = d.toISOString();
+	var nomexp = document.getElementById("nomexp").value;
+	var telexp = document.getElementById("telexp").value;
+	var nomdest = document.getElementById("nomdest").value;
+	var teldest = document.getElementById("teldest").value;
+	var lieudest = document.getElementById("lieudest").value;
+	var desc = document.getElementById("desc").value;
+	var poids = document.getElementById("poids").value;
+	var montant = document.getElementById("montant").value;
+	var datexp = document.getElementById("datexp").value;
+	var colisJSON, 
+		colis= {
+		"nomexp":nomexp,
+		"telexp":telexp,
+		"nomdest":nomdest,
+		"teldest":teldest,
+		"lieudest":lieudest,
+		"desc":desc,
+		"poids":poids,
+		"montant":montant,
+		"datexp":datexp
+	};
+	//conversion en JSON
+	colisJSON = JSON.stringify(colis);
 	//enregisrer la mise à jour
-		localStorage.setItem(truc, articleJSON);
-		stocktruc.innerHTML = obj.stock;
-	//animation du champ stock
-		stocktruc.className += " vente";
+	localStorage.setItem(idcolis, colisJSON);
+}
+
+function enregistrerDatesActives() {
+	//parcourir la liste des td :
+	//  ajouter en stockage local si coché et non existant
+	//  supprimer si non coché et existant
+	var annee = document.getElementById("annee").value;
+	var mois = document.getElementById("mois").value;
+	var anneeMois = annee +'-'+ mois;
+	var datesActives, lesJoursActifs=[];
+	var lesjours = document.getElementsByTagName("td");
+	
+	localStorage.removeItem(anneeMois);
+	for (i = 0; i < lesjours.length; i++) {
+		if (lesjours[i].innerHTML != "") {
+			//uniquement les cases qui contiennent une date
+			if (lesjours[i].className.indexOf("date-active") >= 0) {
+				//si jour est actif alors ajout dans tableau
+				lesJoursActifs.push(lesjours[i].innerHTML);
+			}
+		}
 	}
-	if (obj.stock == 0) {
-	//gestion de l'article si stock nul
-		divtruc.className +=" w3-disabled";
+	if (lesJoursActifs.length > 0) localStorage.setItem(anneeMois,lesJoursActifs);
+}
+
+function enregistrerLieuxActifs() {
+	//parcourir la liste des checkbox  :
+	//  ajouter en stockage local si coché et non existant
+	//  supprimer si non coché et existant
+	var lieuxActifs, lesLieuxActifs=[];
+	var leslieux = document.getElementsByClassName("lieu");
+	
+	for (i = 0; i < leslieux.length; i++) {
+		if (leslieux[i].checked) {
+			//uniquement les cases cochées
+			lesLieuxActifs.push(leslieux[i].value);
+		}
+	}	
+	if (lesLieuxActifs.length == 0) {
+		if (confirm('Etes-vous sûr(e) de vouloir désactiver touts les lieux ?')) {
+			localStorage.removeItem("lieuxactifs");
+		}
 	}
 	else {
-		if (divtruc.className.indexOf(" w3-disabled") > 0) divtruc.className = divtruc.className.replace(" w3-disabled", "");
+		localStorage.removeItem("lieuxactifs");
+		localStorage.setItem("lieuxactifs",lesLieuxActifs);
 	}
-	readValue("tableau");
-	//préparation pour la prochaine vente
-	timer=setTimeout(enleverClasseVente,500,stocktruc);
 }
 
 //***********************************************************************************************

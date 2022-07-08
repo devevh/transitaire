@@ -51,7 +51,13 @@
 		<div class="w3-col" >
 			<label for="nomdest">Nom</label><input class="w3-input" type="text" id="nomdest" >
 			<label for="teldest">Téléphone</label><input class="w3-input" type="number" id="teldest">
-			<label for="lieudest">Lieu</label><input class="w3-input" type="text" id="lieudest">
+			<label for="lieudest">Lieu</label>
+			<!-- <input class="w3-input" type="text" id="lieudest"> -->
+			<select id="lieudest">
+			<!-- liste des options à generer à partir du paramétrage -->
+				<!-- <option value="l1">lieu 1</option>
+				<option value="l2">lieu 2</option> -->
+			</select>
 		</div>
 	</fieldset>
 	<fieldset class="w3-row w3-border" id="exp"><legend>Colis</legend>
@@ -60,15 +66,29 @@
 			<label for="poids">Poids</label><input class="w3-input" type="number" id="poids">
 		</div>
 	</fieldset>
-	<div class="w3-row w3-border" id="montant">
+	<div class="w3-row w3-border w3-margin-top" id="montant">
 		<div class="w3-col" >
 			<label for="montant">montant</label><input class="w3-input" type="number" id="montant" >
 		</div>
 	</div>
-	<div class="w3-row" id="boutons">
+	<div class="w3-row w3-border w3-margin-top" id="date">
 		<div class="w3-col" >
-			<label for="datexp">Date d'envoi</label><input class="w3-input" type="date" id="datexp">
-			<button>Enregistrer</button>
+			<label for="datexp">Date d'envoi</label>
+			<!--<input class="w3-input" type="date" >-->
+			<select id="datexp">
+			<!-- liste des options à generer à partir du paramétrage -->
+				<option value="d1">d1</option>
+				<option value="d2">d2</option>
+				<option value="d3">d3</option>
+				<option value="d4">d4</option>
+				<option value="d5">d5</option>
+			</select>
+		</div>
+	</div>
+	<div class="w3-row w3-margin-top" id="boutons">
+		<div class="w3-col" >
+		<!-- enregistrer permet de stocker automatiquement l'expediteur et le destinataire pour l'afficher plus rapidement lors de la saisie -->
+			<button onclick="enregistrerColis()">Enregistrer</button>
 			<button>Annuler</button>
 		</div>
 	</div>
@@ -98,5 +118,6 @@
 <!-- pwa -->
 <script src="./app.js"></script>
 <script src="./eventListener.js"></script>
+<script src="./afterload.js"></script>
 </body>
 </html>
