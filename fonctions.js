@@ -109,6 +109,35 @@ function ajouterLieu(lelieu) {
 			elmt.setAttribute("for", lelieu);
 		//raz sur la valeur de l'input nouveauLieu
 		document.getElementById('nouveauLieu').value='';
+		//enregistrer le nouveau lieu
+		if (localStorage.getItem("nouveauxlieux") > "") {
+			nvxLieuxTAB = localStorage.getItem("nouveauxlieux").split(",");
+			if (!(nvxLieuxTAB.indexOf(lelieu) >= 0)) {
+				nvxLieuxTAB.push(lelieu);//on ajoute le nouveau lieu si pas présent
+				nvxLieuxTAB.sort();
+			}
+			localStorage.removeItem("nouveauxlieux");
+			localStorage.setItem("nouveauxlieux",nvxLieuxTAB);
+		}
+		else {
+			localStorage.setItem("nouveauxlieux",lelieu);
+		}
+		
+		for (i = 0; i < leslieux.length; i++) {
+			if (leslieux[i].checked) {
+				//uniquement les cases cochées
+				lesLieuxActifs.push(leslieux[i].value);
+			}
+		}
+		if (lesLieuxActifs.length == 0) {
+			if (confirm('Etes-vous sûr(e) de vouloir désactiver touts les lieux ?')) {
+				localStorage.removeItem("lieuxactifs");
+			}
+		}
+		else {
+			localStorage.removeItem("lieuxactifs");
+			localStorage.setItem("lieuxactifs",lesLieuxActifs);
+		}
 	}
 	
 }
