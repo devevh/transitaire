@@ -2,13 +2,15 @@
 var nomCache='gesbar-v1';
 var contenuCache=[
  '/transitaire/index.htm'
- '/transitaire/liste.htm'
- '/transitaire/enregistrer.htm'
- '/transitaire/parametres.htm'
+,'/transitaire/liste.htm'
+,'/transitaire/enregistrer.htm'
+,'/transitaire/parametres.htm'
 ,'/transitaire/app.js'
 ,'/transitaire/sw.js'
 ,'/transitaire/donnees.js'
 ,'/transitaire/fonctions.js'
+,'/transitaire/afterload.js'
+,'/transitaire/afterloadparam.js'
 ,'/transitaire/css/w3.css'
 ,'/transitaire/css/w3color.css'
 ,'/transitaire/images/logo.png'
