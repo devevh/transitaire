@@ -240,7 +240,7 @@ var dateEnCours="", nouvelleDate="";
 				creerElement(colisJSON.datexp,'header','header'+colisJSON.datexp,'w3-left-align','Envoi du '+colisJSON.datexp+' ');	
 				creerElement('header'+colisJSON.datexp,'span','span'+colisJSON.datexp,'w3-badge w3-grey','^');
 					elmt = document.getElementById('span'+colisJSON.datexp);
-					elmt.setAttribute("onclick", "afficherSousMenu('detail'"+colisJSON.datexp+")");	
+					elmt.setAttribute("onclick", "afficherSousMenu('detail"+colisJSON.datexp+"')");	
 				creerElement(colisJSON.datexp,'div','detail'+colisJSON.datexp,'w3-container w3-show','');
 				nouvelleDate = colisJSON.datexp;
 			}
@@ -262,7 +262,7 @@ var dateEnCours="", nouvelleDate="";
 			creerElement('p'+idcolis,'span','lieu'+idcolis,'w3-margin',colisJSON.lieudest);
 			creerElement('p'+idcolis,'span','span'+idcolis,'w3-badge w3-blue','v');
 				elmt = document.getElementById('span'+idcolis);
-				elmt.setAttribute("onclick", "afficherSousMenu('detail'"+idcolis+")");
+				elmt.setAttribute("onclick", "afficherSousMenu('detail"+idcolis+"')");
 			creerElement('p'+idcolis,'div','detail'+idcolis,'w3-container w3-hide w3-text-grey w3-small',colisJSON.desc+' - '+colisJSON.poids+'kg - '+colisJSON.montant+'€');
 		}
 	}
