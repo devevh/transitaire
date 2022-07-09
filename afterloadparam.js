@@ -29,7 +29,7 @@ function cocherDatesActives() {
 	var jourControle=0, dernierJourActif=0;
 	decocherTouteslesDates();
 	if (localStorage.getItem("datesactives") > "") {
-		if (localStorage.getItem(anneeMois)) {
+		if (localStorage.getItem(anneeMois) > "") {
 			var listejoursactifsTAB = localStorage.getItem(anneeMois).split(",");
 			for (jouractif of listejoursactifsTAB) {
 				for (jourControle = dernierJourActif; jourControle < lesjours.length; jourControle++) {
