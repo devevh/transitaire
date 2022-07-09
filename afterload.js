@@ -31,7 +31,7 @@ var AAAA, MM, JJ;
 		var listedatesTAB = localStorage.getItem("datesactives").split(",");
 		for (date of listedatesTAB) {
 			AAAA = date.substr(0,4);
-			MM = (date.substr(5)).padstart(2,'0');
+			MM = date.substr(5).padstart(2,'0');
 			var listejoursactifsTAB = localStorage.getItem(date).split(",");
 			for (jouractif of listejoursactifsTAB) {
 				//calculer la date AAAA-MM-JJ ou JJ/MM/AAAAA
