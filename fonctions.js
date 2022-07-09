@@ -299,7 +299,7 @@ function enregistrerColis() {
 	localStorage.setItem(idcolis, colisJSON);
 	listeColisTAB.push(idcolis);
 	listeColisTAB.sort();
-	localStorage.setItem('envois',idcolis);
+	localStorage.setItem('envois',listeColisTAB);
 }
 
 function enregistrerDatesActives() {
