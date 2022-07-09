@@ -7,6 +7,7 @@ function decocherTouteslesDates() {
 
 function cocherLieuxActifs() {
 //cocher les lieux actifs
+	var leslieux = document.getElementsByClassName("lieu");
 	if (localStorage.getItem("lieuxactifs") > "") {
 		var listelieuxTAB = localStorage.getItem("lieuxactifs").split(",");
 		for (lieu of listelieuxTAB) {
