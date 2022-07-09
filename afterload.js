@@ -31,7 +31,7 @@ var AAAA, MM, JJ;
 		var listedatesTAB = localStorage.getItem("datesactives").split(",");
 		for (date of listedatesTAB) {
 			AAAA = date.substr(0,4);
-			MM = date.substr(5);
+			MM = date.substr(5).valueOf();//recuperer la valeur numérique
 			MM += 1;
 			MM = MM.padStart(2,'0'); //padder au debut avec des 0 pour obtenir une chaine de longueur 2
 			var listejoursactifsTAB = localStorage.getItem(date).split(",");
