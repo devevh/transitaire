@@ -37,7 +37,7 @@ var AAAA, MM, JJ;
 			var listejoursactifsTAB = localStorage.getItem(date).split(",");
 			for (jouractif of listejoursactifsTAB) {
 				//calculer la date AAAA-MM-JJ ou JJ/MM/AAAAA
-				JJ = jouractif;
+				JJ = jouractif.toString().padStart(2,'0');
 				ecrireOption('datexp',JJ+"/"+MM+"/"+AAAA);
 			}
 		}

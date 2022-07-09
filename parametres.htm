@@ -54,7 +54,7 @@
 	<th colspan=7>
 		<!-- <a href="#" class="w3-margin-right" onclick="afficherMois(-1)">&lt;</a>mois<a href="#" class="w3-margin-left" onclick="afficherMois(+1)">&gt;</a> -->
 		<!-- afficherMois() permet de rendre dynamique le bon nomùbre de jour en fonction du mois et de l'année -->
-		<select id="mois" onchange="afficherMois()">
+		<select id="mois" onchange="afficherMois();cocherDatesActives()">
 			<option value="0">Janvier</option>
 			<option value="1">Février</option>
 			<option value="2">Mars</option>
@@ -68,7 +68,7 @@
 			<option value="10">Novembre</option>
 			<option value="11">Décembre</option>
 		</select>
-		<select id="annee" onchange="afficherMois()">
+		<select id="annee" onchange="afficherMois();cocherDatesActives()">
 			<option value="2022">2022</option>
 			<option value="2023">2023</option>
 			<option value="2024">2024</option>
@@ -146,12 +146,12 @@
 <span>Cocher la case pour activer le lieu</span>
 <!-- construire cette liste à partir des données du stockage local -->
 <div id="divlbv" class="w3-row">
-	<div class="w3-col s2"><input id="lbv" type="checkbox" class="lieu" name="lbv" value="lbv"></div>
-	<div class="w3-col s10 w3-left-align"><label for="lbv">Libreville</label></div>
+	<div class="w3-col s2"><input id="Libreville" type="checkbox" class="lieu" name="Libreville" value="Libreville"></div>
+	<div class="w3-col s10 w3-left-align"><label for="Libreville">Libreville</label></div>
 </div>
 <div id="divpog" class="w3-row">
-	<div class="w3-col s2"><input id="pog" type="checkbox" class="lieu" name="pog" value="pog"></div>
-	<div class="w3-col s10 w3-left-align"><label for="pog">Port-Gentil</label></div>
+	<div class="w3-col s2"><input id="Port-Gentil" type="checkbox" class="lieu" name="Port-Gentil" value="Port-Gentil"></div>
+	<div class="w3-col s10 w3-left-align"><label for="Port-Gentil">Port-Gentil</label></div>
 </div>
 <div id="divnew" class="w3-row">
 	<div class="w3-col s2"><label for="nouveauLieu" class="w3-xlarge" onclick="ajouterLieu(document.getElementById('nouveauLieu').value)">+</label></div>
@@ -192,6 +192,6 @@
 <script src="./app.js"></script>
 <script src="./eventListener.js"></script>
 <script>afficherMois()</script>
-
+<script src="./afterloadparam.js"></script>
 </body>
 </html>
