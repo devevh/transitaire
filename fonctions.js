@@ -224,8 +224,8 @@ var dateEnCours="", nouvelleDate="";
 		}
 		colisTAB.sort();//tri sur AAAA/MM/JJaaaa-mm-jjThh:mm:ssZ
 		for (colis of colisTAB) {
-			//dateEnCours = colis.substr(1,10);//recup datexp AAAA/MM/JJ
-			idcolis = colis.substr(11);//recup idcolis aaaa-mm-jjThh:mm:ssZ
+			//dateEnCours = colis.substr(0,10);//recup datexp AAAA/MM/JJ
+			idcolis = colis.substr(10);//recup idcolis aaaa-mm-jjThh:mm:ssZ
 			colisTXT = localStorage.getItem(idcolis);
 			colisJSON = JSON.parse(colisTXT);
 			if (colisJSON.datexp != nouvelleDate) { //rupture sur datexp
