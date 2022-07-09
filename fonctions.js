@@ -48,29 +48,6 @@ function bissextile(annee) {
 	
 }
 
-function gestionAffichage(truc) {
-	let DId, PId, SId;
-	//gestion de l'affichage du truc
-	var texte = localStorage.getItem(truc);
-	var obj = JSON.parse(texte);
-	//identifier l'article
-	PId=document.getElementById("reel"+truc+"prix");
-	SId=document.getElementById("reel"+truc+"stock");
-	DId=document.getElementById("div"+truc);
-	//mettre à jour l'affichage du prix et du stock
-	if (PId) PId.innerHTML = obj.prix+" xaf";
-	if (SId) SId.innerHTML = obj.stock;
-	//si le stock devient nul alors on rend l'article indisponible
-	if (DId) {
-		if (obj.stock == 0) {
-			DId.className +=" w3-disabled";
-		}
-		else {
-			if (DId.className.indexOf(" w3-disabled") > -1) DId.className = DId.className.replace(" w3-disabled", "");
-		}
-	}
-}
-
 function creerElement(idParent,typeElement,idElmt,classe,texte) {
 	var elmt = document.createElement(typeElement);
 	elmt.setAttribute("id", idElmt);
@@ -81,6 +58,7 @@ function creerElement(idParent,typeElement,idElmt,classe,texte) {
 	//var parent=document.getElementById(idParent);
 	//parent.insertBefore(elmt,parent.lastChild);
 }
+
 function creerElementAvantDernier(idParent,typeElement,idElmt,classe,texte) {
 	var elmt = document.createElement(typeElement);
 	elmt.setAttribute("id", idElmt);
@@ -238,10 +216,25 @@ function enregistrerDatesActives() {
 	var annee = document.getElementById("annee").value;
 	var mois = document.getElementById("mois").value;
 	var anneeMois = annee +'-'+ mois;
-	var datesActives, lesJoursActifs=[];
+	var lesJoursActifs=[]; //tableau des jours actifs pour anneeMois
+	var anneeMoisActif; //JSON qui associe anneeMois et lesJoursActifs
+	var listedatesTAB=[];
 	var lesjours = document.getElementsByTagName("td");
+	var i, k;
+	//recherche de anneeMois dans datesactives	
+	if (localStorage.getItem("datesactives") > "") {
+		listedatesTAB = localStorage.getItem("datesactives").split(",");
+		for (i = 0; i < listedatesTAB.length; i++) {
+			if (listedatesTAB[i] == anneeMois) {
+				localStorage.removeItem(anneeMois);
+				listedatesTAB.splice(i,1);
+				listedatesTAB.sort();
+				break;
+			}
+		}
+	}
 	
-	localStorage.removeItem(anneeMois);
+	//lecture des td pour recupérer les jours actifs de anneeMois
 	for (i = 0; i < lesjours.length; i++) {
 		if (lesjours[i].innerHTML != "") {
 			//uniquement les cases qui contiennent une date
@@ -251,7 +244,14 @@ function enregistrerDatesActives() {
 			}
 		}
 	}
-	if (lesJoursActifs.length > 0) localStorage.setItem(anneeMois,lesJoursActifs);
+	
+	//si des jours sont actives dans anneMois on ajoute anneeMois dans datesactives et les jours dans anneeMois
+	if (lesJoursActifs.length > 0) {
+		listedatesTAB.push(anneeMois);
+		listedatesTAB.sort();
+		localStorage.setItem("datesactives",listedatesTAB);
+		localStorage.setItem(anneeMois,lesJoursActifs);
+	}
 }
 
 function enregistrerLieuxActifs() {
@@ -266,7 +266,7 @@ function enregistrerLieuxActifs() {
 			//uniquement les cases cochées
 			lesLieuxActifs.push(leslieux[i].value);
 		}
-	}	
+	}
 	if (lesLieuxActifs.length == 0) {
 		if (confirm('Etes-vous sûr(e) de vouloir désactiver touts les lieux ?')) {
 			localStorage.removeItem("lieuxactifs");
