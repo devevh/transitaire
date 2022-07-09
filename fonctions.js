@@ -92,6 +92,7 @@ function afficherSousMenu(id) {
 function ajouterLieu(lelieu) {
 	//alert('ajouterLieu');
 	var leslieux = document.getElementsByClassName("lieu");
+	var lesLieuxActifs=[];
 	if (lelieu != '') {
 		//ajouter la case à cocher du nouveau lieu dans le fieldset listelieux avant la ligne qui permet d'ajouter un lieu
 		creerElementAvantDernier('listelieux','div','div'+lelieu,'w3-row','');
