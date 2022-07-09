@@ -91,6 +91,7 @@ function afficherSousMenu(id) {
 //ajouter nouveau lieu
 function ajouterLieu(lelieu) {
 	//alert('ajouterLieu');
+	var leslieux = document.getElementsByClassName("lieu");
 	if (lelieu != '') {
 		//ajouter la case à cocher du nouveau lieu dans le fieldset listelieux avant la ligne qui permet d'ajouter un lieu
 		creerElementAvantDernier('listelieux','div','div'+lelieu,'w3-row','');
@@ -123,6 +124,7 @@ function ajouterLieu(lelieu) {
 			localStorage.setItem("nouveauxlieux",lelieu);
 		}
 		
+		//parcourir les cases de classe lieu
 		for (i = 0; i < leslieux.length; i++) {
 			if (leslieux[i].checked) {
 				//uniquement les cases cochées
