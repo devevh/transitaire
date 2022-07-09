@@ -229,28 +229,14 @@ var dateEnCours="", nouvelleDate="";
 			colisTXT = localStorage.getItem(idcolis);
 			colisJSON = JSON.parse(colisTXT);
 			if (colisJSON.datexp != nouvelleDate) { //rupture sur datexp
-				//il faut ecrire dans la div <div class="w3-padding-top-32 w3-wide" id="envois">Liste des colis</div>
-				/*
-				<div class="w3-container" id="d1">
-					<header class="w3-left-align">Date jj/mm/aaaaa <span id="vdate1" class="w3-badge w3-grey" onclick="afficherSousMenu(this.id)" title="clic pour le détail">^</span></header>
-						<div id="detaildate1" class="w3-container w3-show">
-				*/
-				//creerElement(idParent,typeElement,idElmt,classe,texte)
 				creerElement('envois','div',colisJSON.datexp,'w3-container','');	
 				creerElement(colisJSON.datexp,'header','header'+colisJSON.datexp,'w3-left-align','Envoi du '+colisJSON.datexp+' ');	
 				creerElement('header'+colisJSON.datexp,'span','span'+colisJSON.datexp,'w3-badge w3-grey','^');
 					elmt = document.getElementById('span'+colisJSON.datexp);
-					elmt.setAttribute("onclick", "afficherSousMenu('detail"+colisJSON.datexp+"')");	
+					elmt.setAttribute("onclick", "afficherSousMenu('"+colisJSON.datexp+"')");	
 				creerElement(colisJSON.datexp,'div','detail'+colisJSON.datexp,'w3-container w3-show','');
 				nouvelleDate = colisJSON.datexp;
 			}
-			//traitement systématique, il faut écrire dans la div 'detail'+colisJSON.datexp
-			/*
-			<div class="" id="exp1">
-				<p><span id="" title="TelEXP">Exp</span> - <span id="" title="TelDEST">Dest</span> - Lieu - <span id="vexp1" class="w3-badge w3-blue" onclick="afficherSousMenu(this.id)" title="clic pour le détail">v</span>
-				</p>
-			<div id="detailexp1" class="w3-container w3-hide w3-text-grey w3-small">description - poids - montant</div>
-			*/
 			creerElement('detail'+colisJSON.datexp,'div',idcolis,'','');
 			creerElement(idcolis,'p','p'+idcolis,'','');
 			creerElement('p'+idcolis,'span','nomexp'+idcolis,'w3-margin',colisJSON.nomexp);
@@ -262,7 +248,7 @@ var dateEnCours="", nouvelleDate="";
 			creerElement('p'+idcolis,'span','lieu'+idcolis,'w3-margin',colisJSON.lieudest);
 			creerElement('p'+idcolis,'span','span'+idcolis,'w3-badge w3-blue','v');
 				elmt = document.getElementById('span'+idcolis);
-				elmt.setAttribute("onclick", "afficherSousMenu('detail"+idcolis+"')");
+				elmt.setAttribute("onclick", "afficherSousMenu('"+idcolis+"')");
 			creerElement('p'+idcolis,'div','detail'+idcolis,'w3-container w3-hide w3-text-grey w3-small',colisJSON.desc+' - '+colisJSON.poids+'kg - '+colisJSON.montant+'€');
 		}
 	}
