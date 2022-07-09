@@ -38,7 +38,8 @@ var AAAA, MM, JJ;
 			for (jouractif of listejoursactifsTAB) {
 				//calculer la date AAAA-MM-JJ ou JJ/MM/AAAAA
 				JJ = jouractif.toString().padStart(2,'0');
-				ecrireOption('datexp',JJ+"/"+MM+"/"+AAAA);
+				//ecrireOption('datexp',JJ+"/"+MM+"/"+AAAA);
+				ecrireOption('datexp',AAAA+"/"+MM+"/"+JJ);
 			}
 		}
 	}
