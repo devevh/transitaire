@@ -238,7 +238,9 @@ var dateEnCours="", nouvelleDate="";
 				//creerElement(idParent,typeElement,idElmt,classe,texte)
 				creerElement('envois','div',colisJSON.datexp,'w3-container','');	
 				creerElement(colisJSON.datexp,'header','header'+colisJSON.datexp,'w3-left-align','Envoi du '+colisJSON.datexp+' ');	
-				creerElement('header'+colisJSON.datexp,'span','span'+colisJSON.datexp,'w3-badge w3-grey','^');	
+				creerElement('header'+colisJSON.datexp,'span','span'+colisJSON.datexp,'w3-badge w3-grey','^');
+					elmt = document.getElementById('span'+colisJSON.datexp);
+					elmt.setAttribute("onclick", "afficherSousMenu('detail'+colisJSON.datexp)");	
 				creerElement(colisJSON.datexp,'div','detail'+colisJSON.datexp,'w3-container w3-show','');
 				nouvelleDate = colisJSON.datexp;
 			}
@@ -251,14 +253,16 @@ var dateEnCours="", nouvelleDate="";
 			*/
 			creerElement('detail'+colisJSON.datexp,'div',idcolis,'','');
 			creerElement(idcolis,'p','p'+idcolis,'','');
-			creerElement('p'+idcolis,'span','nomexp'+idcolis,'',colisJSON.nomexp);
+			creerElement('p'+idcolis,'span','nomexp'+idcolis,'w3-margin',colisJSON.nomexp);
 				elmt = document.getElementById('nomexp'+idcolis);
 				elmt.setAttribute("title", colisJSON.telexp);
-			creerElement('p'+idcolis,'span','nomdest'+idcolis,'',colisJSON.nomdest);
+			creerElement('p'+idcolis,'span','nomdest'+idcolis,'w3-margin',colisJSON.nomdest);
 				elmt = document.getElementById('nomdest'+idcolis);
 				elmt.setAttribute("title", colisJSON.teldest);
-			creerElement('p'+idcolis,'span','lieu'+idcolis,'',colisJSON.lieu);
-			creerElement('p'+idcolis,'span','span'+colisJSON.datexp,'w3-badge w3-blue','v');
+			creerElement('p'+idcolis,'span','lieu'+idcolis,'w3-margin',colisJSON.lieudest);
+			creerElement('p'+idcolis,'span','span'+idcolis,'w3-badge w3-blue','v');
+				elmt = document.getElementById('span'+idcolis);
+				elmt.setAttribute("onclick", "afficherSousMenu('detail'+idcolis)");
 			creerElement('p'+idcolis,'div','detail'+idcolis,'w3-container w3-hide w3-text-grey w3-small',colisJSON.desc+' - '+colisJSON.poids+'kg - '+colisJSON.montant+'€');
 		}
 	}
