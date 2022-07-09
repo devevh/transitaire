@@ -33,7 +33,7 @@ var AAAA, MM, JJ;
 			AAAA = date.substr(0,4);
 			MM = parseInt(date.substr(5));//recuperer la valeur numérique
 			MM += 1;
-			MM = MM.padStart(2,'0'); //padder au debut avec des 0 pour obtenir une chaine de longueur 2
+			MM = MM.toString().padStart(2,'0'); //padder au debut avec des 0 pour obtenir une chaine de longueur 2
 			var listejoursactifsTAB = localStorage.getItem(date).split(",");
 			for (jouractif of listejoursactifsTAB) {
 				//calculer la date AAAA-MM-JJ ou JJ/MM/AAAAA
