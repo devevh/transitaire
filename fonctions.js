@@ -289,6 +289,7 @@ function enregistrerColis() {
 		"montant":montant,
 		"datexp":datexp
 	};
+	var listeColisTAB=[];
 	if (localStorage.getItem('envois') > "") {
 		listeColisTAB = localStorage.getItem('envois').split(",");
 	}
