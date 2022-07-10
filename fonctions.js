@@ -145,6 +145,7 @@ function afficherColis() {
 //affiche la liste des colis enregistrés
 var colisTXT="", colisJSON="", listeColisTAB=[], colisTAB=[], idcolis="", colis="";
 var dateEnCours="", nouvelleDate="";
+var descr="";
 
 	if (localStorage.getItem('envois') > "") {
 		listeColisTAB = localStorage.getItem('envois').split(",");
@@ -177,7 +178,14 @@ var dateEnCours="", nouvelleDate="";
 			creerElement('p'+idcolis,'span','span'+idcolis,'w3-badge w3-blue','v');
 				elmt = document.getElementById('span'+idcolis);
 				elmt.setAttribute("onclick", "afficherSousMenu('"+idcolis+"')");
-			creerElement('p'+idcolis,'div','detail'+idcolis,'w3-container w3-hide w3-text-grey w3-small',colisJSON.desc.substr(25)+' - '+colisJSON.poids+'kg - '+colisJSON.montant+'€');
+			//tronquer la description à xx caractères avec ajout de '...' à la fin si réellement tronquée
+			if (colisJSON.desc.length > 25) {
+				descr = colisJSON.desc.substr(0,22)+"...";
+			}
+			else {
+				descr = colisJSON.desc;
+			}
+			creerElement('p'+idcolis,'div','detail'+idcolis,'w3-container w3-hide w3-text-grey w3-small',descr+' - '+colisJSON.poids+'kg - '+colisJSON.montant+'€');
 		}
 	}
 }
