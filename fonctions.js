@@ -12,14 +12,9 @@ function stringToHash(string) {
 	return hash;
 }
 
-function recharge() {
-	location.reload();
-}
-
 function enleverClasseVente(truc) {
 	if (truc.className.indexOf(" vente") > 0) truc.className = truc.className.replace(" vente", "");
 }
-
 
 function activerJour(jour) {
 	var td=document.getElementById(jour);
@@ -76,7 +71,7 @@ function creerElementAvantDernier(idParent,typeElement,idElmt,classe,texte) {
 // Accordion 
 function afficherSousMenu(id) {
   var div = document.getElementById('detail'+id);
-  var v = document.getElementById('span'+id);
+  var v = document.getElementById("span"+id);
   if (div.className.indexOf("w3-show") == -1) {
 	div.className = div.className.replace(" w3-hide", " w3-show");
 	v.innerHTML="^";
@@ -87,126 +82,45 @@ function afficherSousMenu(id) {
   }
 }
 
-//ajouter nouveau lieu
-function ajouterLieu(lelieu) {
-	//alert('ajouterLieu');
-	var leslieux = document.getElementsByClassName("lieu");
-	var lesLieuxActifs=[];
-	if (lelieu != '') {
-		//ajouter la case à cocher du nouveau lieu dans le fieldset listelieux avant la ligne qui permet d'ajouter un lieu
-		creerElementAvantDernier('listelieux','div','div'+lelieu,'w3-row','');
-		creerElement('div'+lelieu,'div','divinput'+lelieu,'w3-col s2','');
-		//ajouter l'input
-		creerElement('divinput'+lelieu,'input',lelieu,'lieu','');
-		//définir les attributs spécifiques de l'input pour préciser le type checkbox
-		elmt=document.getElementById(lelieu);
-			elmt.setAttribute("type", "checkbox");
-			elmt.setAttribute("name", lelieu);
-			elmt.setAttribute("value", lelieu);
-		creerElement('div'+lelieu,'div','divlabel'+lelieu,'w3-col s10 w3-left-align','');
-		//ajouter le label de l'input
-		creerElement('divlabel'+lelieu,'label','label'+lelieu,'',lelieu);
-		elmt=document.getElementById('label'+lelieu);
-			elmt.setAttribute("for", lelieu);
-		//raz sur la valeur de l'input nouveauLieu
-		document.getElementById('nouveauLieu').value='';
-		//enregistrer le nouveau lieu
-		if (localStorage.getItem("nouveauxlieux") > "") {
-			nvxLieuxTAB = localStorage.getItem("nouveauxlieux").split(",");
-			if (!(nvxLieuxTAB.indexOf(lelieu) >= 0)) {
-				nvxLieuxTAB.push(lelieu);//on ajoute le nouveau lieu si pas présent
-				nvxLieuxTAB.sort();
-			}
-			localStorage.removeItem("nouveauxlieux");
-			localStorage.setItem("nouveauxlieux",nvxLieuxTAB);
-		}
-		else {
-			localStorage.setItem("nouveauxlieux",lelieu);
-		}
-		
-		//parcourir les cases de classe lieu
-		for (i = 0; i < leslieux.length; i++) {
-			if (leslieux[i].checked) {
-				//uniquement les cases cochées
-				lesLieuxActifs.push(leslieux[i].value);
-			}
-		}
-		if (lesLieuxActifs.length == 0) {
-			if (confirm('Etes-vous sûr(e) de vouloir désactiver touts les lieux ?')) {
-				localStorage.removeItem("lieuxactifs");
-			}
-		}
-		else {
-			localStorage.removeItem("lieuxactifs");
-			localStorage.setItem("lieuxactifs",lesLieuxActifs);
-		}
-	}
-	
-}
-
 function afficherMois() {
 	var annee = document.getElementById('annee').value;
 	var mois = document.getElementById('mois').value;
 	var jours = document.getElementsByClassName('jour');
 	bissextile(annee);
 	var nbJours = ANNEE[mois];
+	//calcul du jour de la semaine du 1er du mois 
 	mois++;
 	var d = new Date(annee+"-"+mois+"-01");
 	var offset = d.getDay();
 	//0 = dimanche, 6=samedi
 	if (offset == 0) { 
-	offset = 6;
+		offset = 6;
 	}
 	else {
 		offset--; //lundi=1 -> 0 et samedi=6 -> 5
 	}
-	// i:indice du poste des cases dans le calendrier
-	// j:numéro du jour, incrémenté à partir de offset
-	var j=1;
-	for (i=0;i<41;i++) {
-		if (i < offset) {
-			jours[i].innerHTML= "";
+	// indTD : indice du poste des cases dans le calendrier
+	// numJour : numéro du jour, incrémenté à partir de offset
+	var indTD=0, numJour=1;
+	for (indTD=0;indTD<jours.length;indTD++) {
+		if (indTD < offset) {
+			jours[indTD].innerHTML= "&nbsp;";
 		}
 		else {
-			if (j <= nbJours) {
-				jours[i].innerHTML=j;
+			if (numJour <= nbJours) {
+				jours[indTD].innerHTML=numJour;
 			}
 			else {
-				jours[i].innerHTML = "";
+				jours[indTD].innerHTML = "&nbsp;";
 			}
-			j++;
+			numJour++;
 		}
-		jours[i].className = jours[i].className.replace(" date-active","");
+		jours[indTD].className = jours[indTD].className.replace(" date-active","");
 	}
 }
 /**************************************************************************************/
 //fonctions opérationnelles
 /**************************************************************************************/
-
-//******************************************************************************************************
-function readValue(quellediv) {
-	//mise à jour du tableau des ventes
-	let d = document.getElementById(quellediv);
-	let tableau, truc, texte, obj;
-	d.innerHTML = "";
-	if (localStorage.length == 0) {
-		d.innerHTML = "Aucun inventaire disponible";
-	}
-	else {
-		tableau = "<table class='w3-table-all'><tr><th>Article</th><th class='w3-right-align'>Stock</th><th class='w3-right-align'>Ventes</th><th class='w3-right-align'>Prix</th><th class='w3-right-align'>Montant</th></tr>\n";
-		for (i = 0; i < localStorage.length; i++) {
-			truc = localStorage.key(i);
-			//test de la clé pour ne pas lire les histo
-			if (!(truc.startsWith('20'))) {
-				texte = localStorage.getItem(truc);
-				obj = JSON.parse(texte);
-				tableau += "<tr><td>"+truc+"</td><td class='w3-right-align'>"+obj.stock+"</td><td class='w3-right-align'>"+obj.vente+"</td><td class='w3-right-align'>"+obj.prix+"</td><td class='w3-right-align'>"+obj.prix*obj.vente+"</td></tr>\n";
-			}
-		}
-		tableau +="</table>";
-		d.innerHTML += tableau;
-	}
-}
 
 //*************************************************************************************************
 function afficherColis() {
@@ -227,7 +141,7 @@ var dateEnCours="", nouvelleDate="";
 			idcolis = colis.substr(10);//recup idcolis aaaa-mm-jjThh:mm:ssZ
 			colisTXT = localStorage.getItem(idcolis);
 			colisJSON = JSON.parse(colisTXT);
-			if (colisJSON.datexp != nouvelleDate) { //rupture sur datexp
+			if (colisJSON.datexp != nouvelleDate) { //rupture sur datexp => ecrire l'entete d'expedition
 				creerElement('envois','div',colisJSON.datexp,'w3-container','');	
 				creerElement(colisJSON.datexp,'header','header'+colisJSON.datexp,'w3-left-align','Envoi du '+colisJSON.datexp+' ');	
 				creerElement('header'+colisJSON.datexp,'span','span'+colisJSON.datexp,'w3-badge w3-grey','^');
@@ -236,25 +150,22 @@ var dateEnCours="", nouvelleDate="";
 				creerElement(colisJSON.datexp,'div','detail'+colisJSON.datexp,'w3-container w3-show','');
 				nouvelleDate = colisJSON.datexp;
 			}
+			//traitement systématique, ecrire le detail de chaque colis dans l'expédition
 			creerElement('detail'+colisJSON.datexp,'div',idcolis,'','');
 			creerElement(idcolis,'p','p'+idcolis,'','');
-			creerElement('p'+idcolis,'span','nomexp'+idcolis,'w3-margin',colisJSON.nomexp);
-				elmt = document.getElementById('nomexp'+idcolis);
-				elmt.setAttribute("title", colisJSON.telexp);
-			creerElement('p'+idcolis,'span','nomdest'+idcolis,'w3-margin',colisJSON.nomdest);
-				elmt = document.getElementById('nomdest'+idcolis);
-				elmt.setAttribute("title", colisJSON.teldest);
+			creerElement('p'+idcolis,'span','nomexp'+idcolis,'w3-margin',colisJSON.nomexp+' ('+colisJSON.telexp+')');
+			creerElement('p'+idcolis,'span','nomdest'+idcolis,'w3-margin',colisJSON.nomdest+' ('+colisJSON.teldest+')');
 			creerElement('p'+idcolis,'span','lieu'+idcolis,'w3-margin',colisJSON.lieudest);
 			creerElement('p'+idcolis,'span','span'+idcolis,'w3-badge w3-blue','v');
 				elmt = document.getElementById('span'+idcolis);
 				elmt.setAttribute("onclick", "afficherSousMenu('"+idcolis+"')");
-			creerElement('p'+idcolis,'div','detail'+idcolis,'w3-container w3-hide w3-text-grey w3-small',colisJSON.desc+' - '+colisJSON.poids+'kg - '+colisJSON.montant+'€');
+			creerElement('p'+idcolis,'div','detail'+idcolis,'w3-container w3-hide w3-text-grey w3-small',colisJSON.desc.substr(25)+' - '+colisJSON.poids+'kg - '+colisJSON.montant+'€');
 		}
 	}
 }
 
 function enregistrerColis() {
-//met à jour le stock et la vente de l'article
+//enregistre le détail du colis
 	var d = new Date();
 	var idcolis = d.toISOString();
 	var nomexp = document.getElementById("nomexp").value;
@@ -292,6 +203,7 @@ function enregistrerColis() {
 }
 
 function enregistrerDatesActives() {
+//enregistre les dates activées
 	//parcourir la liste des td :
 	//  ajouter en stockage local si coché et non existant
 	//  supprimer si non coché et existant
@@ -315,7 +227,6 @@ function enregistrerDatesActives() {
 			}
 		}
 	}
-	
 	//lecture des td pour recupérer les jours actifs de anneeMois
 	for (i = 0; i < lesjours.length; i++) {
 		if (lesjours[i].innerHTML != "") {
@@ -326,8 +237,7 @@ function enregistrerDatesActives() {
 			}
 		}
 	}
-	
-	//si des jours sont actives dans anneMois on ajoute anneeMois dans datesactives et les jours dans anneeMois
+	//si des jours sont activés dans anneMois on ajoute anneeMois dans datesactives et les jours dans anneeMois
 	if (lesJoursActifs.length > 0) {
 		listedatesTAB.push(anneeMois);
 		listedatesTAB.sort();
@@ -336,7 +246,46 @@ function enregistrerDatesActives() {
 	}
 }
 
+//ajouter nouveau lieu
+function ajouterLieu(lelieu) {
+	var leslieux = document.getElementsByClassName("lieu");
+	var lesLieuxActifs=[];
+	if (lelieu != '') {
+		//ajouter la case à cocher du nouveau lieu dans le fieldset listelieux avant la ligne qui permet d'ajouter un lieu
+		creerElementAvantDernier('listelieux','div','div'+lelieu,'w3-row','');
+		creerElement('div'+lelieu,'div','divinput'+lelieu,'w3-col s2','');
+		//ajouter l'input
+		creerElement('divinput'+lelieu,'input',lelieu,'lieu','');
+		//définir les attributs spécifiques de l'input pour préciser le type checkbox
+		elmt=document.getElementById(lelieu);
+			elmt.setAttribute("type", "checkbox");
+			elmt.setAttribute("name", lelieu);
+			elmt.setAttribute("value", lelieu);
+		creerElement('div'+lelieu,'div','divlabel'+lelieu,'w3-col s10 w3-left-align','');
+		//ajouter le label de l'input
+		creerElement('divlabel'+lelieu,'label','label'+lelieu,'',lelieu);
+		elmt=document.getElementById('label'+lelieu);
+			elmt.setAttribute("for", lelieu);
+		//raz sur la valeur de l'input nouveauLieu
+		document.getElementById('nouveauLieu').value='';
+		//enregistrer le nouveau lieu
+		if (localStorage.getItem("nouveauxlieux") > "") {
+			nvxLieuxTAB = localStorage.getItem("nouveauxlieux").split(",");
+			if (!(nvxLieuxTAB.indexOf(lelieu) >= 0)) {
+				nvxLieuxTAB.push(lelieu);//on ajoute le nouveau lieu si pas présent
+				nvxLieuxTAB.sort();
+			}
+			localStorage.removeItem("nouveauxlieux");
+			localStorage.setItem("nouveauxlieux",nvxLieuxTAB);
+		}
+		else {
+			localStorage.setItem("nouveauxlieux",lelieu);
+		}
+	}
+}
+
 function enregistrerLieuxActifs() {
+//enregistre les lieux activés
 	//parcourir la liste des checkbox  :
 	//  ajouter en stockage local si coché et non existant
 	//  supprimer si non coché et existant
@@ -359,24 +308,6 @@ function enregistrerLieuxActifs() {
 		localStorage.setItem("lieuxactifs",lesLieuxActifs);
 	}
 }
-
-//***********************************************************************************************
-function maj(truc) {
-	//met à jour le stock, le prix unitaire et remet à 0 le nombre de vente
-	// récupérer le prix saisi
-	var prix = Math.floor(document.getElementById("prix"+truc).value);
-	// récupérer le stock saisi
-	var stock = Math.floor(document.getElementById("stock"+truc).value);
-	if ((stock === 0) || (prix === 0)) {stock=0; prix=0};
-	// Storing data
-	var article = {"stock":stock,"vente":0,"prix":prix};
-	var articleJSON = JSON.stringify(article);
-	if ((stock >= 0) && (prix >= 0)) localStorage.setItem(truc, articleJSON);
-	gestionAffichage(truc);
-	//mettre à jour le tableau de suivi du stock et des ventes
-	readValue("tableau");
-}
-
 
 //************************************************************************
 //usage futur : geolocalisation
