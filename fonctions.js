@@ -12,10 +12,6 @@ function stringToHash(string) {
 	return hash;
 }
 
-function enleverClasseVente(truc) {
-	if (truc.className.indexOf(" vente") > 0) truc.className = truc.className.replace(" vente", "");
-}
-
 function activerJour(jour) {
 	var td=document.getElementById(jour);
 	if (td.className.indexOf("date-active") == -1) {
@@ -39,8 +35,7 @@ function bissextile(annee) {
 	}
 	else {
 		ANNEE = ANNEEBI;
-	}
-	
+	}	
 }
 
 function creerElement(idParent,typeElement,idElmt,classe,texte) {
@@ -49,9 +44,6 @@ function creerElement(idParent,typeElement,idElmt,classe,texte) {
 	elmt.setAttribute("class", classe);
 	if (texte>"") elmt.appendChild(document.createTextNode(texte));
 	document.getElementById(idParent).appendChild(elmt);
-	//insertBefore
-	//var parent=document.getElementById(idParent);
-	//parent.insertBefore(elmt,parent.lastChild);
 }
 
 function creerElementAvantDernier(idParent,typeElement,idElmt,classe,texte) {
@@ -59,8 +51,6 @@ function creerElementAvantDernier(idParent,typeElement,idElmt,classe,texte) {
 	elmt.setAttribute("id", idElmt);
 	elmt.setAttribute("class", classe);
 	if (texte>"") elmt.appendChild(document.createTextNode(texte));
-	//document.getElementById(idParent).appendChild(elmt);
-	//insertBefore
 	var elmtparent=document.getElementById(idParent);
 	elmtparent.insertBefore(elmt,elmtparent.lastElementChild);
 }
@@ -129,7 +119,7 @@ function afficherMois() {
 	}
 }
 
-function reset() {
+function monreset() {
 // effacer les tous input de la page
 	var lesinputs = document.getElementsByTagName("input");
 	for (input of lesinputs) {
@@ -228,6 +218,7 @@ function enregistrerColis() {
 	localStorage.setItem('envois',listeColisTAB);
 	//affichage confirmation
 	afficherConfirmation();
+	monreset();
 }
 
 function enregistrerDatesActives() {
