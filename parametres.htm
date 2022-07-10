@@ -32,17 +32,17 @@
 <p> l'application ne pourra pas fonctionner ni être installée</p>
 </noscript>
 <nav class="w3-container w3-top" style="background-color: #f4f3f1">
-<ul class="w3-ul-menu-d w3-large">
-	<li class="btnInstall w3-orange w3-hide" id="btnInstall">Installer l'application GESTRANS</li>
+<ul class="w3-ul-menu-d w3-xlarge">
 	<li id="accueil">Accueil</li>
 	<li id="quitter">Quitter</li>
 	<li id="aide">Aide</li>
+	<li class="btnInstall w3-orange w3-hide" id="btnInstall">Installer l'application GESTRANS</li>
 </ul>
 </nav>
 <!-- !PAGE CONTENT! -->
 <div class="w3-main">
 <header class="w3-xlarge" >
-	<div class="w3-padding-top-32 w3-wide">Paramétrage</div>
+	<div class="w3-padding-top-64 w3-wide">Paramétrage</div>
 </header>
 <!-- parametres proposés lors de l'enregistrement d'un colis -->
 <!-- dates -->
@@ -172,6 +172,11 @@
 
 <!-- copyright -->
 <p class="w3-codespan w3-small">&copy; Tous droits réservés 2022 - <a href:"mailto:dev.vincenth@gmail.com">dev.vincenth@gmail.com</a></p>
+<!-- div de confirmation d'enregistrement -->
+<div id="confirmation" class="w3-top w3-hide w3-animate-opacity w3-green w3-card-4" z-index=3 onclick="afficherConfirmation()">
+<p>Saisie correctement enregistrée
+</p>
+</div>
 
 <!-- modales -->
 <div id="modaleAide" class="w3-modal">

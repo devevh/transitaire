@@ -82,6 +82,16 @@ function afficherSousMenu(id) {
   }
 }
 
+function afficherConfirmation() {
+  var div = document.getElementById('confirmation');
+  if (div.className.indexOf("w3-show") == -1) {
+	div.className = div.className.replace(" w3-hide", " w3-show");
+  } 
+  else {
+    div.className = div.className.replace(" w3-show", " w3-hide");
+  }
+}
+
 function afficherMois() {
 	var annee = document.getElementById('annee').value;
 	var mois = document.getElementById('mois').value;
@@ -116,6 +126,14 @@ function afficherMois() {
 			numJour++;
 		}
 		jours[indTD].className = jours[indTD].className.replace(" date-active","");
+	}
+}
+
+function reset() {
+// effacer les tous input de la page
+	var lesinputs = document.getElementsByTagName("input");
+	for (input of lesinputs) {
+		input.value = "";
 	}
 }
 /**************************************************************************************/
@@ -200,6 +218,8 @@ function enregistrerColis() {
 	listeColisTAB.push(idcolis);
 	listeColisTAB.sort();
 	localStorage.setItem('envois',listeColisTAB);
+	//affichage confirmation
+	afficherConfirmation();
 }
 
 function enregistrerDatesActives() {
