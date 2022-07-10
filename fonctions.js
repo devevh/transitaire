@@ -264,6 +264,8 @@ function enregistrerDatesActives() {
 		localStorage.setItem("datesactives",listedatesTAB);
 		localStorage.setItem(anneeMois,lesJoursActifs);
 	}
+	//affichage confirmation
+	afficherConfirmation();
 }
 
 //ajouter nouveau lieu
@@ -302,6 +304,8 @@ function ajouterLieu(lelieu) {
 			localStorage.setItem("nouveauxlieux",lelieu);
 		}
 	}
+	//affichage confirmation
+	afficherConfirmation();
 }
 
 function enregistrerLieuxActifs() {
@@ -327,6 +331,8 @@ function enregistrerLieuxActifs() {
 		localStorage.removeItem("lieuxactifs");
 		localStorage.setItem("lieuxactifs",lesLieuxActifs);
 	}
+	//affichage confirmation
+	afficherConfirmation();
 }
 
 //************************************************************************
