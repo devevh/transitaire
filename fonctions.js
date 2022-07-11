@@ -182,6 +182,7 @@ var descr="";
 				elmt = document.getElementById('modif'+idcolis);
 				elmt.setAttribute("src", "./images/crayon.jpg");
 				elmt.setAttribute("onclick", "modifier('"+idcolis+"')");
+				elmt.setAttribute("height", "16px");
 			//tronquer la description à xx caractères avec ajout de '...' à la fin si réellement tronquée
 			if (colisJSON.desc.length > 25) {
 				descr = colisJSON.desc.substr(0,22)+"...";
