@@ -60,6 +60,16 @@ function creerElementAvantDernier(idParent,typeElement,idElmt,classe,texte) {
 /**************************************************************************************/
 // Accordion 
 function afficherSousMenu(id) {
+  var div = document.getElementById(+id);
+  if (div.className.indexOf("w3-show") == -1) {
+	div.className = div.className.replace(" w3-hide", " w3-show");
+  } 
+  else {
+    div.className = div.className.replace(" w3-show", " w3-hide");
+  }
+}
+
+function afficherSousMenu2(id) {
   var div = document.getElementById('detail'+id);
   var v = document.getElementById("span"+id);
   if (div.className.indexOf("w3-show") == -1) {
@@ -155,7 +165,7 @@ var descr="";
 				creerElement(colisJSON.datexp,'header','header'+colisJSON.datexp,'w3-left-align','Envoi du '+colisJSON.datexp+' ');	
 				creerElement('header'+colisJSON.datexp,'span','span'+colisJSON.datexp,'w3-badge w3-grey','^');
 					elmt = document.getElementById('span'+colisJSON.datexp);
-					elmt.setAttribute("onclick", "afficherSousMenu('"+colisJSON.datexp+"')");	
+					elmt.setAttribute("onclick", "afficherSousMenu2('"+colisJSON.datexp+"')");	
 				creerElement(colisJSON.datexp,'div','detail'+colisJSON.datexp,'w3-container w3-show','');
 				nouvelleDate = colisJSON.datexp;
 			}
@@ -167,7 +177,7 @@ var descr="";
 			creerElement('p'+idcolis,'span','lieu'+idcolis,'w3-margin',colisJSON.lieudest);
 			creerElement('p'+idcolis,'span','span'+idcolis,'w3-badge w3-blue','v');
 				elmt = document.getElementById('span'+idcolis);
-				elmt.setAttribute("onclick", "afficherSousMenu('"+idcolis+"')");
+				elmt.setAttribute("onclick", "afficherSousMenu2('"+idcolis+"')");
 			//tronquer la description à xx caractères avec ajout de '...' à la fin si réellement tronquée
 			if (colisJSON.desc.length > 25) {
 				descr = colisJSON.desc.substr(0,22)+"...";
