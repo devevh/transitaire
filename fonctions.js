@@ -178,6 +178,9 @@ var descr="";
 			creerElement('p'+idcolis,'span','span'+idcolis,'w3-badge w3-blue','v');
 				elmt = document.getElementById('span'+idcolis);
 				elmt.setAttribute("onclick", "afficherSousMenu2('"+idcolis+"')");
+			creerElement('p'+idcolis,'img','modif'+idcolis,'w3-img','');
+				elmt = document.getElementById('modif'+idcolis);
+				elmt.setAttribute("src", "./images/crayon.jpg");
 			//tronquer la description à xx caractères avec ajout de '...' à la fin si réellement tronquée
 			if (colisJSON.desc.length > 25) {
 				descr = colisJSON.desc.substr(0,22)+"...";
