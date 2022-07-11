@@ -1,7 +1,7 @@
 {
-    "name": "Gestion transit",
+    "name": "Gestion bar & snack",
     "short_name": "GESTRANS",
-	"description": "Application de gestion de l'activité du transitaire, réception des colis, liste des envois",
+	"description": "Application de gestion de l'activité du transitaire",
 	"lang": "fr",
 	"dir": "ltr",
     "theme_color": "#000000",
