@@ -54,7 +54,7 @@
 	<th colspan=7>
 		<!-- <a href="#" class="w3-margin-right" onclick="afficherMois(-1)">&lt;</a>mois<a href="#" class="w3-margin-left" onclick="afficherMois(+1)">&gt;</a> -->
 		<!-- afficherMois() permet de rendre dynamique le bon nomùbre de jour en fonction du mois et de l'année -->
-		<select id="mois" onchange="afficherMois();cocherDatesActives()">
+		<select size=1 id="mois" onchange="afficherMois();cocherDatesActives()">
 			<option value="0">Janvier</option>
 			<option value="1">Février</option>
 			<option value="2">Mars</option>
@@ -68,13 +68,22 @@
 			<option value="10">Novembre</option>
 			<option value="11">Décembre</option>
 		</select>
-		<select id="annee" onchange="afficherMois();cocherDatesActives()">
+		<select size=1 id="annee" onchange="afficherMois();cocherDatesActives()">
 			<option value="2022">2022</option>
 			<option value="2023">2023</option>
 			<option value="2024">2024</option>
 			<option value="2025">2025</option>
 		</select>
 	</th>
+</tr>
+<tr>
+	<th>Lu</th>
+	<th>Ma</th>
+	<th>Me</th>
+	<th>Je</th>
+	<th>Ve</th>
+	<th>Sa</th>
+	<th>Di</th>
 </tr>
 <tr>
 	<td id="j01" class="jour" onclick="activerJour(this.id)">&nbsp;</td>
@@ -196,6 +205,21 @@
 <!-- pwa -->
 <script src="./app.js"></script>
 <script src="./eventListener.js"></script>
+<script>
+var aujourdhui = new Date();
+var quelmois = aujourdhui.getMonth();
+var quelleannee = aujourdhui.getFullYear();
+document.getElementById('mois').selectedIndex = quelmois;
+//
+var listeannee = document.getElementById('annee');
+var option = document.createElement('option');
+var max = quelleannee + 4;
+for (quelleannee;quelleannee==max;quelleannee++) {
+	option.text = quelleannee;
+	option.value = quelleannee;
+	listeannee.add(option);
+}
+</script>
 <script>afficherMois()</script>
 <script src="./afterloadparam.js"></script>
 </body>
