@@ -60,7 +60,7 @@ function creerElementAvantDernier(idParent,typeElement,idElmt,classe,texte) {
 /**************************************************************************************/
 // Accordion 
 function afficherSousMenu(id) {
-  var div = document.getElementById(+id);
+  var div = document.getElementById(id);
   if (div.className.indexOf("w3-show") == -1) {
 	div.className = div.className.replace(" w3-hide", " w3-show");
   } 
