@@ -188,11 +188,11 @@ var aujourdhui = lannee+"/"+lemois+"/"+lejour;
 					creerElement(colisJSON.datexp,'div','detail'+colisJSON.datexp,'w3-container w3-hide','');
 				}
 				else {
-					creerElement('envois','div',colisJSON.datexp,'w3-container','');	
-					creerElement(colisJSON.datexp,'header','header'+colisJSON.datexp,'w3-left-align','Envoi du '+colisJSON.datexp+' ');	
+					creerElement('envois','div',colisJSON.datexp,'w3-container','');
+					creerElement(colisJSON.datexp,'header','header'+colisJSON.datexp,'w3-left-align','Envoi du '+colisJSON.datexp+' ');
 					creerElement('header'+colisJSON.datexp,'span','span'+colisJSON.datexp,'w3-badge w3-grey','^');
 						elmt = document.getElementById('span'+colisJSON.datexp);
-						elmt.setAttribute("onclick", "afficherSousMenu2('"+colisJSON.datexp+"')");	
+						elmt.setAttribute("onclick", "afficherSousMenu2('"+colisJSON.datexp+"')");
 					creerElement(colisJSON.datexp,'div','detail'+colisJSON.datexp,'w3-container w3-show','');
 				}
 				DateEC = colisJSON.datexp;
@@ -200,14 +200,14 @@ var aujourdhui = lannee+"/"+lemois+"/"+lejour;
 			//traitement systématique, ecrire le detail de chaque colis dans l'expédition
 			creerElement('detail'+colisJSON.datexp,'div',idcolis,'','');
 			creerElement(idcolis,'p','p'+idcolis,'','');
-			creerElement('p'+idcolis,'img','modif'+idcolis','w3-img','');
+			creerElement('p'+idcolis,'img','modif'+idcolis,'w3-img','');
 				elmt = document.getElementById('modif'+idcolis);
 				elmt.setAttribute("src", "./images/crayon.jpg");
 				elmt.setAttribute("onclick", "modifier('"+idcolis+"')");
 				elmt.setAttribute("height", "16px");
-			creerElement('p'+idcolis,'span','nomexp'+idcolis,'w3-margin',colisJSON.nomexp+' ('+colisJSON.telexp+')');
-			creerElement('p'+idcolis,'span','nomdest'+idcolis,'w3-margin',colisJSON.nomdest+' ('+colisJSON.teldest+')');
-			creerElement('p'+idcolis,'span','lieu'+idcolis,'w3-margin',colisJSON.lieudest);
+			creerElement('p'+idcolis,'span','nomexp'+idcolis,'w3-margin-right',colisJSON.nomexp+' ('+colisJSON.telexp+')');
+			creerElement('p'+idcolis,'span','nomdest'+idcolis,'w3-margin-right',colisJSON.nomdest+' ('+colisJSON.teldest+')');
+			creerElement('p'+idcolis,'span','lieu'+idcolis,'w3-margin-right',colisJSON.lieudest);
 			creerElement('p'+idcolis,'span','span'+idcolis,'w3-badge w3-blue','v');
 				elmt = document.getElementById('span'+idcolis);
 				elmt.setAttribute("onclick", "afficherSousMenu2('"+idcolis+"')");
