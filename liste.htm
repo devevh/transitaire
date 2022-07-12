@@ -60,9 +60,59 @@
     </div>
 </div>
 
+<div id="modaleModifier" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 ">
+		<header class="w3-container"> 
+			<h3>Modifier le colis <span id="idcolis"></span></h3>
+			<span id="fermerModifier" class="w3-button w3-display-topright w3-large"><b>×</b></span>
+		</header>
+		<!--  -->
+		<div class="w3-row" >
+			<label for="nomexp" class="w3-col s2">Nom exp.</label><input class="w3-col s10" type="text" id="nomexp" >
+		</div>
+		<div class="w3-row" >
+			<label for="telexp" class="w3-col s2">Tél.</label><input class="w3-col s10" type="number" id="telexp">
+		</div>
+		<div class="w3-row" >
+			<label for="nomdest" class="w3-col s2">Nom dest.</label><input class="w3-col s10" type="text" id="nomdest">
+		</div>
+		<div class="w3-row" >
+			<label for="teldest" class="w3-col s2">Tél.</label><input class="w3-col s10" type="number" id="teldest">
+		</div>
+		<div class="w3-row" >
+			<label for="lieudest" class="w3-col s2">Lieu</label><select class="w3-col s10" id="lieudest"></select>
+		</div>
+		<div class="w3-row" >
+			<label for="desc" class="w3-col s2">Descr.</label><input class="w3-col s10" type="text" id="desc" >
+		</div>
+		<div class="w3-row" >
+			<label for="poids" class="w3-col s2">Poids</label><input class="w3-col s10" type="number" id="poids">
+		</div>
+		<div class="w3-row" >
+			<label for="montant" class="w3-col s2">Montant</label><input class="w3-col s10" type="number" id="montant" >
+		</div>
+		<div class="w3-row" >
+			<label for="datexp" class="w3-col s2">Date d'envoi</label><select class="w3-col s10" id="datexp"></select>
+		</div>
+		<div class="w3-row w3-margin-top w3-center" id="boutons">
+			<div class="w3-col s6" >
+		<!-- enregistrer permet de stocker automatiquement l'expediteur et le destinataire pour l'afficher plus rapidement lors de la saisie -->
+			<button onclick="enregistrerColis()">Enregistrer</button>
+			</div>
+			<div class="w3-col s6" >
+			<button onclick="monreset()">Annuler</button>
+			</div>
+		</div>
+		<footer class="w3-container">
+			<!-- <p class="w3-codespan w3-small">&copy; Tous droits réservés 2022 - <a href:"mailto:dev.vincenth@gmail.com">dev.vincenth@gmail.com</a></p> -->
+		</footer>
+    </div>
+</div>
+
 <!-- pwa -->
 <script src="./app.js"></script>
 <script src="./eventListener.js"></script>
+<script src="./afterload.js"></script>
 <script>afficherColis()</script>
 </body>
 </html>

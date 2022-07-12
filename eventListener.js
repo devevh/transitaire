@@ -6,3 +6,5 @@ document.getElementById('quitter').addEventListener('click', function(){ window.
 document.getElementById('aide').addEventListener('click',function(){document.getElementById('modaleAide').style.display='block';});
 //clic sur le x pour fermer la modale de aide
 document.getElementById('fermerAide').addEventListener('click',function(){document.getElementById('modaleAide').style.display='none';});
+//clic sur le x pour fermer la modale de modifier
+document.getElementById('fermerModifier').addEventListener('click',function(){document.getElementById('modaleModifier').style.display='none';});

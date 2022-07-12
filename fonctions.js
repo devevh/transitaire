@@ -55,6 +55,26 @@ function creerElementAvantDernier(idParent,typeElement,idElmt,classe,texte) {
 	elmtparent.insertBefore(elmt,elmtparent.lastElementChild);
 }
 
+function monreset() {
+// effacer les tous input de la page
+	var lesinputs = document.getElementsByTagName("input");
+	for (input of lesinputs) {
+		input.value = "";
+	}
+}
+
+function trouverIndexOptionSelected(idselect,valeur) {
+	var leselect = document.getElementById("idselect");
+	let i=0, index=-1;
+	//parcourir la liste des options
+	for (i=0; i<leselect.length; i++) {
+		if (leselect.option[i].value == valeur) {
+			index = i;
+			break;
+		}
+	}
+	return index;
+}
 /**************************************************************************************/
 //fonctions dynamiques
 /**************************************************************************************/
@@ -129,13 +149,6 @@ function afficherMois() {
 	}
 }
 
-function monreset() {
-// effacer les tous input de la page
-	var lesinputs = document.getElementsByTagName("input");
-	for (input of lesinputs) {
-		input.value = "";
-	}
-}
 /**************************************************************************************/
 //fonctions opérationnelles
 /**************************************************************************************/
@@ -172,17 +185,17 @@ var descr="";
 			//traitement systématique, ecrire le detail de chaque colis dans l'expédition
 			creerElement('detail'+colisJSON.datexp,'div',idcolis,'','');
 			creerElement(idcolis,'p','p'+idcolis,'','');
+			creerElement('p'+idcolis,'img','modif'+idcolis','w3-img','');
+				elmt = document.getElementById('modif'+idcolis);
+				elmt.setAttribute("src", "./images/crayon.jpg");
+				elmt.setAttribute("onclick", "modifier('"+idcolis+"')");
+				elmt.setAttribute("height", "16px");
 			creerElement('p'+idcolis,'span','nomexp'+idcolis,'w3-margin',colisJSON.nomexp+' ('+colisJSON.telexp+')');
 			creerElement('p'+idcolis,'span','nomdest'+idcolis,'w3-margin',colisJSON.nomdest+' ('+colisJSON.teldest+')');
 			creerElement('p'+idcolis,'span','lieu'+idcolis,'w3-margin',colisJSON.lieudest);
 			creerElement('p'+idcolis,'span','span'+idcolis,'w3-badge w3-blue','v');
 				elmt = document.getElementById('span'+idcolis);
 				elmt.setAttribute("onclick", "afficherSousMenu2('"+idcolis+"')");
-			creerElement('p'+idcolis,'img','modif'+idcolis,'w3-img','');
-				elmt = document.getElementById('modif'+idcolis);
-				elmt.setAttribute("src", "./images/crayon.jpg");
-				elmt.setAttribute("onclick", "modifier('"+idcolis+"')");
-				elmt.setAttribute("height", "16px");
 			//tronquer la description à xx caractères avec ajout de '...' à la fin si réellement tronquée
 			if (colisJSON.desc.length > 25) {
 				descr = colisJSON.desc.substr(0,22)+"...";
@@ -193,6 +206,27 @@ var descr="";
 			creerElement('p'+idcolis,'div','detail'+idcolis,'w3-container w3-hide w3-text-grey w3-small',descr+' - '+colisJSON.poids+'kg - '+colisJSON.montant+'€');
 		}
 	}
+}
+function modifier(quelcolis) {
+//afficher la modale du formulaire de mise à jour
+	//recuperer les valeurs stockees
+	var colisTXT = localStorage.getItem("quelcolis");
+	var colisJSON = JSON.parse(colisTXT);
+	//alimenter le titre de la modale
+	document.getElementById("idcolis").value = quelcolis;
+	//alimenter les inputs
+	document.getElementById("nomexp").value = colisJSON.nomexp;
+	document.getElementById("telexp").value = colisJSON.telexp;
+	document.getElementById("nomdest").value = colisJSON.nomdest;
+	document.getElementById("teldest").value = colisJSON.teldest;
+	document.getElementById("desc").value = colisJSON.desc;
+	document.getElementById("poids").value = colisJSON.poids;
+	document.getElementById("montant").value = colisJSON.montant;
+	// gestion des select 
+	document.getElementById("lieudest").selectedIndex = trouverIndexOptionSelected("lieudest",colisJSON.lieudest);
+	document.getElementById("datexp").selectedIndex = trouverIndexOptionSelected("datexp",colisJSON.datexp);
+	//afficher la modale
+	vueModifier.style.display='block';
 }
 
 function enregistrerColis() {
