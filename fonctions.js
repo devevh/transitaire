@@ -237,6 +237,7 @@ function modifier(quelcolis) {
 	var colisJSON = JSON.parse(colisTXT);
 	//alimenter le titre de la modale
 	document.getElementById("idcolis").innerHTML = quelcolis;
+	document.getElementById("idcolis").value = quelcolis;
 	//alimenter les inputs
 	document.getElementById("nomexp").value = colisJSON.nomexp;
 	document.getElementById("telexp").value = colisJSON.telexp;

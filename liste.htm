@@ -67,6 +67,7 @@
 			<span id="fermerModifier" class="w3-button w3-display-topright w3-large"><b>×</b></span>
 		</header>
 		<!--  -->
+		<input class="" type="hidden" id="idcolis" >
 		<div class="w3-row" >
 			<label for="nomexp" class="w3-col s2">Nom exp.</label><input class="w3-col s10" type="text" id="nomexp" >
 		</div>
@@ -96,17 +97,21 @@
 		</div>
 		<div class="w3-row w3-margin-top w3-center" id="boutons">
 			<div class="w3-col s6" >
-		<!-- enregistrer permet de stocker automatiquement l'expediteur et le destinataire pour l'afficher plus rapidement lors de la saisie -->
-			<button onclick="enregistrerColis()">Enregistrer</button>
+			<button onclick="enregistrerColis();document.getElementById('modaleModifier').style.display='none'">Enregistrer</button>
 			</div>
 			<div class="w3-col s6" >
-			<button onclick="monreset()">Annuler</button>
+			<button onclick="document.getElementById('modaleModifier').style.display='none'">Annuler</button>
 			</div>
 		</div>
 		<footer class="w3-container">
 			<!-- <p class="w3-codespan w3-small">&copy; Tous droits réservés 2022 - <a href:"mailto:dev.vincenth@gmail.com">dev.vincenth@gmail.com</a></p> -->
 		</footer>
     </div>
+</div>
+<!-- div de confirmation d'enregistrement -->
+<div id="confirmation" class="w3-top w3-hide w3-animate-opacity w3-green w3-card-4" z-index=3 onclick="afficherConfirmation()">
+<p>Saisie correctement enregistrée
+</p>
 </div>
 
 <!-- pwa -->
