@@ -166,7 +166,7 @@ var JJ = d.getDate();
 MM = parseInt(d.getMonth());//recuperer la valeur numérique
 MM += 1;
 MM = MM.toString().padStart(2,'0'); //padder au debut avec des 0 pour obtenir une chaine de longueur 2
-JJ = JJ.padStart(2,'0');
+JJ = JJ.toString().padStart(2,'0');
 var aujourdhui = AAAA+"/"+MM+"/"+JJ;
 
 	if (localStorage.getItem('envois') > "") {
