@@ -260,7 +260,7 @@ function enregistrerColis() {
 	var idcolis = "";
 	//ecriture ternaire du if
 	var numColis = document.getElementById("idcolis");
-	if (numColis === undefined) {
+	if (numColis === undefined || numColis === null) {
 		idcolis = tsCreationColis;
 	} else if (numColis.value > "") {
 		idcolis = numColis.value ;
