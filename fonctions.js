@@ -157,8 +157,13 @@ function afficherMois() {
 function afficherColis() {
 //affiche la liste des colis enregistrés
 var colisTXT="", colisJSON="", listeColisTAB=[], colisTAB=[], idcolis="", colis="";
-var dateEnCours="", nouvelleDate="";
+var dateEnCours="", DateEC="", d = new Date(), aujourdhui="";
 var descr="";
+
+var lannee = d.getFullYear();
+var lemois = d.getMonth();
+var lejour = d.getDate();
+var aujourdhui = lannee+"/"+lemois+"/"+lejour;
 
 	if (localStorage.getItem('envois') > "") {
 		listeColisTAB = localStorage.getItem('envois').split(",");
@@ -169,18 +174,28 @@ var descr="";
 		}
 		colisTAB.sort();//tri sur AAAA/MM/JJaaaa-mm-jjThh:mm:ssZ
 		for (colis of colisTAB) {
-			//dateEnCours = colis.substr(0,10);//recup datexp AAAA/MM/JJ
 			idcolis = colis.substr(10);//recup idcolis aaaa-mm-jjThh:mm:ssZ
 			colisTXT = localStorage.getItem(idcolis);
 			colisJSON = JSON.parse(colisTXT);
-			if (colisJSON.datexp != nouvelleDate) { //rupture sur datexp => ecrire l'entete d'expedition
-				creerElement('envois','div',colisJSON.datexp,'w3-container','');	
-				creerElement(colisJSON.datexp,'header','header'+colisJSON.datexp,'w3-left-align','Envoi du '+colisJSON.datexp+' ');	
-				creerElement('header'+colisJSON.datexp,'span','span'+colisJSON.datexp,'w3-badge w3-grey','^');
-					elmt = document.getElementById('span'+colisJSON.datexp);
-					elmt.setAttribute("onclick", "afficherSousMenu2('"+colisJSON.datexp+"')");	
-				creerElement(colisJSON.datexp,'div','detail'+colisJSON.datexp,'w3-container w3-show','');
-				nouvelleDate = colisJSON.datexp;
+			if (colisJSON.datexp != DateEC) { //rupture sur datexp => ecrire l'entete d'expedition
+				//reduire les dates passées
+				if (colisJSON.datexp < aujourdhui) {
+					creerElement('envois','div',colisJSON.datexp,'w3-container','');
+					creerElement(colisJSON.datexp,'header','header'+colisJSON.datexp,'w3-left-align','Envoi du '+colisJSON.datexp+' ');
+					creerElement('header'+colisJSON.datexp,'span','span'+colisJSON.datexp,'w3-badge w3-grey','v');
+						elmt = document.getElementById('span'+colisJSON.datexp);
+						elmt.setAttribute("onclick", "afficherSousMenu2('"+colisJSON.datexp+"')");
+					creerElement(colisJSON.datexp,'div','detail'+colisJSON.datexp,'w3-container w3-hide','');
+				}
+				else {
+					creerElement('envois','div',colisJSON.datexp,'w3-container','');	
+					creerElement(colisJSON.datexp,'header','header'+colisJSON.datexp,'w3-left-align','Envoi du '+colisJSON.datexp+' ');	
+					creerElement('header'+colisJSON.datexp,'span','span'+colisJSON.datexp,'w3-badge w3-grey','^');
+						elmt = document.getElementById('span'+colisJSON.datexp);
+						elmt.setAttribute("onclick", "afficherSousMenu2('"+colisJSON.datexp+"')");	
+					creerElement(colisJSON.datexp,'div','detail'+colisJSON.datexp,'w3-container w3-show','');
+				}
+				DateEC = colisJSON.datexp;
 			}
 			//traitement systématique, ecrire le detail de chaque colis dans l'expédition
 			creerElement('detail'+colisJSON.datexp,'div',idcolis,'','');
@@ -207,6 +222,7 @@ var descr="";
 		}
 	}
 }
+
 function modifier(quelcolis) {
 //afficher la modale du formulaire de mise à jour
 	//recuperer les valeurs stockees
