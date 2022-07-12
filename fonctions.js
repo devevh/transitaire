@@ -236,7 +236,7 @@ function modifier(quelcolis) {
 	var colisTXT = localStorage.getItem(quelcolis);
 	var colisJSON = JSON.parse(colisTXT);
 	//alimenter le titre de la modale
-	document.getElementById("idcolis").value = quelcolis;
+	document.getElementById("idcolis").innerHTML = quelcolis;
 	//alimenter les inputs
 	document.getElementById("nomexp").value = colisJSON.nomexp;
 	document.getElementById("telexp").value = colisJSON.telexp;
@@ -249,7 +249,7 @@ function modifier(quelcolis) {
 	document.getElementById("lieudest").selectedIndex = trouverIndexOptionSelected("lieudest",colisJSON.lieudest);
 	document.getElementById("datexp").selectedIndex = trouverIndexOptionSelected("datexp",colisJSON.datexp);
 	//afficher la modale
-	vueModifier.style.display='block';
+	document.getElementById("modaleModifier").style.display='block';
 }
 
 function enregistrerColis() {
