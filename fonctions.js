@@ -184,7 +184,7 @@ var aujourdhui = AAAA+"/"+MM+"/"+JJ;
 			if (colisJSON.datexp != DateEC) { //rupture sur datexp => ecrire l'entete d'expedition
 				//reduire les dates passées
 				if (colisJSON.datexp < aujourdhui) {
-					creerElement('envois','div',colisJSON.datexp,'w3-container','');
+					creerElement('envois','div',colisJSON.datexp,'w3-container w3-margin-top','');
 					creerElement(colisJSON.datexp,'header','header'+colisJSON.datexp,'w3-left-align','Envoi du '+colisJSON.datexp+' ');
 					creerElement('header'+colisJSON.datexp,'span','span'+colisJSON.datexp,'w3-badge w3-grey','v');
 						elmt = document.getElementById('span'+colisJSON.datexp);
@@ -192,7 +192,7 @@ var aujourdhui = AAAA+"/"+MM+"/"+JJ;
 					creerElement(colisJSON.datexp,'div','detail'+colisJSON.datexp,'w3-container w3-hide','');
 				}
 				else {
-					creerElement('envois','div',colisJSON.datexp,'w3-container','');
+					creerElement('envois','div',colisJSON.datexp,'w3-container w3-margin-top','');
 					creerElement(colisJSON.datexp,'header','header'+colisJSON.datexp,'w3-left-align','Envoi du '+colisJSON.datexp+' ');
 					creerElement('header'+colisJSON.datexp,'span','span'+colisJSON.datexp,'w3-badge w3-grey','^');
 						elmt = document.getElementById('span'+colisJSON.datexp);
@@ -204,11 +204,14 @@ var aujourdhui = AAAA+"/"+MM+"/"+JJ;
 			//traitement systématique, ecrire le detail de chaque colis dans l'expédition
 			creerElement('detail'+colisJSON.datexp,'div',idcolis,'','');
 			creerElement(idcolis,'p','p'+idcolis,'','');
-			creerElement('p'+idcolis,'img','modif'+idcolis,'w3-img','');
-				elmt = document.getElementById('modif'+idcolis);
-				elmt.setAttribute("src", "./images/crayon.jpg");
-				elmt.setAttribute("onclick", "modifier('"+idcolis+"')");
-				elmt.setAttribute("height", "16px");
+			//pouvoir modifier uniquement les expéditions futures
+			if (colisJSON.datexp > aujourdhui) {
+				creerElement('p'+idcolis,'img','modif'+idcolis,'w3-img','');
+					elmt = document.getElementById('modif'+idcolis);
+					elmt.setAttribute("src", "./images/crayon.jpg");
+					elmt.setAttribute("onclick", "modifier('"+idcolis+"')");
+					elmt.setAttribute("height", "16px");
+			}
 			creerElement('p'+idcolis,'span','nomexp'+idcolis,'w3-margin-right',colisJSON.nomexp+' ('+colisJSON.telexp+')');
 			creerElement('p'+idcolis,'span','nomdest'+idcolis,'w3-margin-right',colisJSON.nomdest+' ('+colisJSON.teldest+')');
 			creerElement('p'+idcolis,'span','lieu'+idcolis,'w3-margin-right',colisJSON.lieudest);
@@ -230,7 +233,7 @@ var aujourdhui = AAAA+"/"+MM+"/"+JJ;
 function modifier(quelcolis) {
 //afficher la modale du formulaire de mise à jour
 	//recuperer les valeurs stockees
-	var colisTXT = localStorage.getItem("quelcolis");
+	var colisTXT = localStorage.getItem(quelcolis);
 	var colisJSON = JSON.parse(colisTXT);
 	//alimenter le titre de la modale
 	document.getElementById("idcolis").value = quelcolis;
