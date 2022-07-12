@@ -236,7 +236,7 @@ function modifier(quelcolis) {
 	var colisTXT = localStorage.getItem(quelcolis);
 	var colisJSON = JSON.parse(colisTXT);
 	//alimenter le titre de la modale
-	document.getElementById("idcolis").innerHTML = quelcolis;
+	document.getElementById("spanidcolis").innerHTML = quelcolis;
 	document.getElementById("idcolis").value = quelcolis;
 	//alimenter les inputs
 	document.getElementById("nomexp").value = colisJSON.nomexp;
@@ -256,7 +256,10 @@ function modifier(quelcolis) {
 function enregistrerColis() {
 //enregistre le détail du colis
 	var d = new Date();
-	var idcolis = d.toISOString();
+	var tsCreationColis = d.toISOString();
+	var idcolis = "";
+	//ecriture ternaire du if
+	(document.getElementById("idcolis").value > "") ? idcolis = document.getElementById("idcolis").value : idcolis = tsCreationColis;
 	var nomexp = document.getElementById("nomexp").value;
 	var telexp = document.getElementById("telexp").value;
 	var nomdest = document.getElementById("nomdest").value;
