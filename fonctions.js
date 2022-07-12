@@ -168,6 +168,7 @@ MM += 1;
 MM = MM.toString().padStart(2,'0'); //padder au debut avec des 0 pour obtenir une chaine de longueur 2
 JJ = JJ.toString().padStart(2,'0');
 var aujourdhui = AAAA+"/"+MM+"/"+JJ;
+var ecrireHR1fois = 0;
 
 	if (localStorage.getItem('envois') > "") {
 		listeColisTAB = localStorage.getItem('envois').split(",");
@@ -190,8 +191,13 @@ var aujourdhui = AAAA+"/"+MM+"/"+JJ;
 						elmt = document.getElementById('span'+colisJSON.datexp);
 						elmt.setAttribute("onclick", "afficherSousMenu2('"+colisJSON.datexp+"')");
 					creerElement(colisJSON.datexp,'div','detail'+colisJSON.datexp,'w3-container w3-hide','');
+					ecrireHR1fois++;
 				}
 				else {
+					if (ecrireHR1fois === 1) {
+						creerElement('envois','hr','','w3-hr','');
+						ecrireHR1fois++;
+					}
 					creerElement('envois','div',colisJSON.datexp,'w3-container w3-margin-top','');
 					creerElement(colisJSON.datexp,'header','header'+colisJSON.datexp,'w3-left-align','Envoi du '+colisJSON.datexp+' ');
 					creerElement('header'+colisJSON.datexp,'span','span'+colisJSON.datexp,'w3-badge w3-grey','^');
