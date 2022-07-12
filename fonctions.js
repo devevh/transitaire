@@ -160,10 +160,14 @@ var colisTXT="", colisJSON="", listeColisTAB=[], colisTAB=[], idcolis="", colis=
 var dateEnCours="", DateEC="", d = new Date(), aujourdhui="";
 var descr="";
 
-var lannee = d.getFullYear();
-var lemois = d.getMonth();
-var lejour = d.getDate();
-var aujourdhui = lannee+"/"+lemois+"/"+lejour;
+var AAAA = d.getFullYear();
+var MM = d.getMonth();
+var JJ = d.getDate();
+MM = parseInt(d.getMonth(););//recuperer la valeur numérique
+MM += 1;
+MM = MM.toString().padStart(2,'0'); //padder au debut avec des 0 pour obtenir une chaine de longueur 2
+JJ = JJ.padStart(2,'0');
+var aujourdhui = AAAA+"/"+MM+"/"+JJ;
 
 	if (localStorage.getItem('envois') > "") {
 		listeColisTAB = localStorage.getItem('envois').split(",");
