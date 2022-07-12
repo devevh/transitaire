@@ -68,7 +68,7 @@ function trouverIndexOptionSelected(idselect,valeur) {
 	let i=0, index=-1;
 	//parcourir la liste des options
 	for (i=0; i<leselect.length; i++) {
-		if (leselect.option[i].value == valeur) {
+		if (leselect[i].value == valeur) {
 			index = i;
 			break;
 		}
