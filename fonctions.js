@@ -264,8 +264,8 @@ function enregistrerColis() {
 	var d = new Date();
 	var tsCreationColis = d.toISOString();
 	var idcolis = "";
-	//ecriture ternaire du if
 	var numColis = document.getElementById("idcolis");
+	//calcul de idcolis selon l'origine de l'enregistrement
 	if (numColis === undefined || numColis === null) {
 		idcolis = tsCreationColis;
 	} else if (numColis.value > "") {
