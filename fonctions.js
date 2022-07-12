@@ -64,7 +64,7 @@ function monreset() {
 }
 
 function trouverIndexOptionSelected(idselect,valeur) {
-	var leselect = document.getElementById("idselect");
+	var leselect = document.getElementById(idselect);
 	let i=0, index=-1;
 	//parcourir la liste des options
 	for (i=0; i<leselect.length; i++) {
