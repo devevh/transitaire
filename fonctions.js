@@ -264,6 +264,8 @@ function enregistrerColis() {
 		idcolis = tsCreationColis;
 	} else if (numColis.value > "") {
 		idcolis = numColis.value ;
+	} else {
+		idcolis = tsCreationColis;
 	}
 	var nomexp = document.getElementById("nomexp").value;
 	var telexp = document.getElementById("telexp").value;
@@ -294,9 +296,14 @@ function enregistrerColis() {
 	colisJSON = JSON.stringify(colis);
 	//enregisrer la mise à jour
 	localStorage.setItem(idcolis, colisJSON);
-	listeColisTAB.push(idcolis);
-	listeColisTAB.sort();
-	localStorage.setItem('envois',listeColisTAB);
+	//tester l'existence du colis
+	if (listeColisTAB.indexOf(idcolis) == -1) {
+		//si idcolis n'est pas présent on l'ajoute
+		listeColisTAB.push(idcolis);
+		listeColisTAB.sort();
+		//et on met à jour le stockage local
+		localStorage.setItem('envois',listeColisTAB);
+	}
 	//affichage confirmation
 	afficherConfirmation();
 	monreset();
