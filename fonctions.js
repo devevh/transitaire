@@ -259,7 +259,12 @@ function enregistrerColis() {
 	var tsCreationColis = d.toISOString();
 	var idcolis = "";
 	//ecriture ternaire du if
-	(document.getElementById("idcolis").value > "") ? idcolis = document.getElementById("idcolis").value : idcolis = tsCreationColis;
+	var numColis = document.getElementById("idcolis");
+	if (numColis === undefined) {
+		idcolis = tsCreationColis;
+	} else if (numColis.value > "") {
+		idcolis = numColis.value ;
+	}
 	var nomexp = document.getElementById("nomexp").value;
 	var telexp = document.getElementById("telexp").value;
 	var nomdest = document.getElementById("nomdest").value;
