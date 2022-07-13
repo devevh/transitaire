@@ -174,6 +174,7 @@ var colisTXT="", colisJSON="", listeEnvoisTAB=[], nlleListeEnvoisTAB=[], idcolis
 			localStorage.setItem('envois',nlleListeEnvoisTAB);
 		}
 	}
+	location.reload();
 }
 //*************************************************************************************************
 function afficherColis() {
