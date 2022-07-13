@@ -167,7 +167,7 @@ var colisTXT="", colisJSON="", listeEnvoisTAB=[], nlleListeEnvoisTAB=[], idcolis
 			}
 		}
 		nlleListeEnvoisTAB.sort();
-		if (nlleListeEnvoisTAB.length() > 0) {
+		if (nlleListeEnvoisTAB.length > 0) {
 			localStorage.removeItem('envois');
 			localStorage.setItem('envois',nlleListeEnvoisTAB);
 		}
@@ -206,12 +206,12 @@ var ecrireHR1fois = 0;
 				//reduire les dates passées
 				if (colisJSON.datexp < aujourdhui) {
 					creerElement('envois','div',colisJSON.datexp,'w3-container w3-margin-top','');
-					creerElement(colisJSON.datexp,'img','supp'+colisJSON.datexp,'w3-img','');
+					creerElement(colisJSON.datexp,'header','header'+colisJSON.datexp,'w3-left-align','Envoi du '+colisJSON.datexp+' ');
+					creerElement('header'+colisJSON.datexp,'img','supp'+colisJSON.datexp,'w3-img','');
 						elmt = document.getElementById('supp'+colisJSON.datexp);
 						elmt.setAttribute("src", "./images/poubelle.jpg");
 						elmt.setAttribute("onclick", "supprimerExpedition('"+colisJSON.datexp+"')");
 						elmt.setAttribute("height", "16px");
-					creerElement(colisJSON.datexp,'header','header'+colisJSON.datexp,'w3-left-align','Envoi du '+colisJSON.datexp+' ');
 					creerElement('header'+colisJSON.datexp,'span','span'+colisJSON.datexp,'w3-badge w3-grey','v');
 						elmt = document.getElementById('span'+colisJSON.datexp);
 						elmt.setAttribute("onclick", "afficherSousMenu2('"+colisJSON.datexp+"')");
