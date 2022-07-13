@@ -163,12 +163,14 @@ var colisTXT="", colisJSON="", listeEnvoisTAB=[], nlleListeEnvoisTAB=[], idcolis
 			colisJSON = JSON.parse(colisTXT);
 			if (colisJSON.datexp != dateExp) {
 				nlleListeEnvoisTAB.push(idcolis);
+			}
+			else {
 				localStorage.removeItem(idcolis);
 			}
 		}
 		nlleListeEnvoisTAB.sort();
+		localStorage.removeItem('envois');
 		if (nlleListeEnvoisTAB.length > 0) {
-			localStorage.removeItem('envois');
 			localStorage.setItem('envois',nlleListeEnvoisTAB);
 		}
 	}
