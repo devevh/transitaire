@@ -152,7 +152,27 @@ function afficherMois() {
 /**************************************************************************************/
 //fonctions opérationnelles
 /**************************************************************************************/
+function supprimerExpedition(dateExp) {
+//supprimer les colis et l'envoi correspondant à la date d'expédition passée en paramètre
+var colisTXT="", colisJSON="", listeEnvoisTAB=[], nlleListeEnvoisTAB=[], idcolis="";
 
+	if (localStorage.getItem('envois') > "") {
+		listeEnvoisTAB = localStorage.getItem('envois').split(",");
+		for (idcolis of listeEnvoisTAB) {
+			colisTXT = localStorage.getItem(idcolis);
+			colisJSON = JSON.parse(colisTXT);
+			if (colisJSON.datexp != dateExp) {
+				nlleListeEnvoisTAB.push(idcolis);
+				localStorage.removeItem(idcolis);
+			}
+		}
+		nlleListeEnvoisTAB.sort();
+		if (nlleListeEnvoisTAB.length() > 0) {
+			localStorage.removeItem('envois');
+			localStorage.setItem('envois',nlleListeEnvoisTAB);
+		}
+	}
+}
 //*************************************************************************************************
 function afficherColis() {
 //affiche la liste des colis enregistrés
@@ -186,6 +206,11 @@ var ecrireHR1fois = 0;
 				//reduire les dates passées
 				if (colisJSON.datexp < aujourdhui) {
 					creerElement('envois','div',colisJSON.datexp,'w3-container w3-margin-top','');
+					creerElement(colisJSON.datexp,'img','supp'+colisJSON.datexp,'w3-img','');
+						elmt = document.getElementById('supp'+colisJSON.datexp);
+						elmt.setAttribute("src", "./images/poubelle.jpg");
+						elmt.setAttribute("onclick", "supprimerExpedition('"+colisJSON.datexp+"')");
+						elmt.setAttribute("height", "16px");
 					creerElement(colisJSON.datexp,'header','header'+colisJSON.datexp,'w3-left-align','Envoi du '+colisJSON.datexp+' ');
 					creerElement('header'+colisJSON.datexp,'span','span'+colisJSON.datexp,'w3-badge w3-grey','v');
 						elmt = document.getElementById('span'+colisJSON.datexp);
