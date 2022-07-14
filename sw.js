@@ -18,7 +18,7 @@ var contenuCache=[
 ,'/transitaire/images/logo192blanc.png'
 ,'/transitaire/images/logo512blanc.png'
 ,'/transitaire/images/favicon-256x256.png'
-,'/transitaire/images/poubelle.png'
+,'/transitaire/images/poubelle.jpg'
 ,'/transitaire/images/loupe.png'
 ,'/transitaire/images/crayon.jpg'
 ,'/transitaire/images/favicon.ico'
