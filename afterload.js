@@ -22,7 +22,9 @@ function construireSelectLieux() {
 function construireSelectDates() {
 //creer les elements options d'un select à partir des données stockees en localstorage
 //la clé de lecture est le nom du select
-var AAAA, MM, JJ;
+var dt = new Date();
+var aujourdhui = dt.getFullYear() + "/" + (parseInt(dt.getMonth())+1).toString().padStart(2,'0') + "/" + dt.getDate();
+var AAAA, MM, JJ, dateExp;
 	if (localStorage.getItem("datesactives") == "") {
 		alert("stockage local ne contient pas la liste datesactives");
 		ecrireOption('datexp','0');
@@ -38,8 +40,10 @@ var AAAA, MM, JJ;
 			for (jouractif of listejoursactifsTAB) {
 				//calculer la date AAAA-MM-JJ ou JJ/MM/AAAAA
 				JJ = jouractif.toString().padStart(2,'0');
+				dateExp = AAAA + "/" + MM + "/" + JJ;
 				//ecrireOption('datexp',JJ+"/"+MM+"/"+AAAA);
-				ecrireOption('datexp',AAAA+"/"+MM+"/"+JJ);
+				//afficher uniquement si la date est > aujourdhui
+				if (aujourdhui <= dateExp) ecrireOption('datexp',dateExp);
 			}
 		}
 	}
