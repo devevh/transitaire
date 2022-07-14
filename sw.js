@@ -1,5 +1,5 @@
 //variabilisation
-var nomCache='gesbar-v1';
+var nomCache='gestrans-v1';
 var contenuCache=[
  '/transitaire/index.htm'
 ,'/transitaire/liste.htm'
