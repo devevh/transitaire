@@ -23,7 +23,7 @@ function construireSelectDates() {
 //creer les elements options d'un select à partir des données stockees en localstorage
 //la clé de lecture est le nom du select
 var dt = new Date();
-var aujourdhui = dt.getFullYear() + "/" + (parseInt(dt.getMonth())+1).toString().padStart(2,'0') + "/" + dt.getDate();
+var aujourdhui = dt.getFullYear() + "/" + (parseInt(dt.getMonth())+1).toString().padStart(2,'0') + "/" + dt.getDate().toString().padStart(2,'0');
 var AAAA, MM, JJ, dateExp;
 	if (localStorage.getItem("datesactives") == "") {
 		alert("stockage local ne contient pas la liste datesactives");
