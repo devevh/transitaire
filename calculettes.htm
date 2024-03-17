@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<title>calculettes GESTRANS &copy; DEVEVH</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#000000">
+	<meta name="description" content="outils d'aide de l'application GESTRANS
+	Contact par mail : dev.vincenth@gmail.com, par whatsApp : +33 7 60 31 72 62">
+	<meta name="robots" content="noindex, nofollow">
+	<link rel="stylesheet" href="./css/w3.css">
+	<link rel="stylesheet" href="./css/w3color.css">
+	<link rel="manifest" href="manifest.webmanifest">
+	<link rel="shortcut icon" href="./images/favicon.ico">
+	<link rel="apple-touch-icon" href="./images/logo192blanc.png">
+	<!-- fonctions spécifiques -->
+	<script src="./fonctions.js"></script>
+	<script src="./donnees.js"></script>
+	<noscript>
+	<meta name="theme-color" content="#FF0000">
+	</noscript>
+	<style>
+	.w3-table-all-2{border-collapse:collapse;border-spacing:0;width:100%;display:table;border:1px solid #ccc}
+	.w3-table-all-2 td,.w3-table-all-2 th{padding:8px 8px;display:table-cell;text-align:center;vertical-align:top;border:1px solid #ccc}
+	.w3-table-all-2 th{background-color: #DDD;}
+	.w3-table-all-2 td:hover{background-color:#ccc;color:white}
+	</style>
+</head>
+<body class="w3-content w3-center " style="max-width:1200px" >
+<noscript>
+<h1>Votre navigateur ne supporte pas javascript ou bien javascript est désactivé</h1>
+<p> l'application ne pourra pas fonctionner ni être installée</p>
+</noscript>
+<nav class="w3-container w3-top" style="background-color: #f4f3f1">
+<ul class="w3-ul-menu-d w3-xlarge">
+	<li id="accueil">Accueil</li>
+	<li id="quitter">Quitter</li>
+	<li class="btnInstall w3-orange w3-hide" id="btnInstall">Installer l'application GESTRANS</li>
+</ul>
+</nav>
+<!-- !PAGE CONTENT! -->
+<div class="w3-main">
+<header class="w3-xlarge" >
+	<div class="w3-padding-top-64 w3-wide">Outils d'aide</div>
+</header>
+<!-- euro <-> franc CFA -->
+<div id="diveurocfa" class="w3-container">
+	<table id="tabeurocfa" class="w3-table-all-2">
+		<th>Conversion EUR / XAF (1:655,957)
+		</th>
+		<tr>
+			<td>
+				<label>EUR</label>
+				<input type="number" id="euro" name="euro">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>XAF</label>
+				<input type="number" id="cfa" name="cfa">
+			</td>
+		</tr>
+	</table>
+</div>
+<!--  -->
+<!-- poids <-> volume -->
+<div id="divpoidsvolume" class="w3-container">
+	
+	<table id="tabpoidsvolume" class="w3-table-all-2">
+		<th> Poids réel ou poids volume ?
+			<span class="infobulle w3-hide">Si le colis a une densité inférieure à une limite (densité) arbitraire, 
+				c'est le volume du colis qui est utilisé (multiplié par cette densité) pour calculer le montant.
+			</span>
+		</th>
+		<tr>
+			<td>
+				<label>Poids réel</label>
+				<input type="number" id="poids" name="poids">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>L (cm)</label>
+				<input type="number" id="longueur" name="longueur" size="3" min="0" max="999" maxlength="3">
+				<label>l (cm)</label>
+				<input type="number" id="largeur" name="largeur" size="3" min="0" max="999" maxlength="3">
+				<label>H (cm)</label>
+				<input type="number" id="hauteur" name="hauteur" size="3" min="0" max="999" maxlength="3"><br>
+				<label>Volume (cm3)</label>
+				<span id="volume" name="volume" class="w3-bold"></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Poids volumétrique calculé</label>
+				<input type="number" id="poidsVolume" name="poidsVolume" readonly>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Poids facturé</label>
+				<span id="poidsfacture" name="poidsfacture" class="w3-bold"></span>
+			</td>
+		</tr>
+	</table>
+</div>
+<!--  -->
+<!-- End page content -->
+</div>
+
+<!-- copyright -->
+<p class="w3-codespan w3-small">&copy; Tous droits réservés 2022 - <a href:"mailto:dev.vincenth@gmail.com">dev.vincenth@gmail.com</a></p>
+
+
+<!-- modales -->
+
+<!-- pwa -->
+<script src="./app.js"></script>
+<script src="./eventListener.js"></script>
+
+<script>
+function EuroVsCFA () {
+	var mtEuro = document.getElementById('euro');
+	var mtCFA = document.getElementById('cfa');
+	mtCFA.value = Math.round(mtEuro.value * 655,957);
+};
+
+function CFAVsEuro () {
+	var mtEuro = document.getElementById('euro');
+	var mtCFA = document.getElementById('cfa');
+	mtEuro.value = Math.round(mtCFA.value / 655,957);
+};
+
+function poidsVolume () {
+	var poidsReel = document.getElementById('poids');
+	var L = document.getElementById('longueur').value;
+	var l = document.getElementById('largeur').value;
+	var H = document.getElementById('hauteur').value;
+	var vol = document.getElementById('volume');
+	var poidsCalcule = document.getElementById('poidsVolume');
+	var poidsFacture = document.getElementById('poidsfacture');
+	var volu=0, PR=0, PC=0;
+	volu = L*l*H;
+	vol.innerText = volu;
+	PC = Math.ceil(volu / 6000);
+	PR = poidsReel.value;
+	poidsCalcule.value = PC;
+	if (PR > PC) {
+		poidsFacture.innerText = PR;
+	}
+	else {
+		poidsFacture.innerText = PC;
+	}
+};
+//eventlistener sur la conversion
+if (document.getElementById('tabeurocfa')) {
+    //changement de la valeur de euro
+    document.getElementById('euro').addEventListener('change',function(){document.getElementById('cfa').value=Math.round(document.getElementById('euro').value * 655,957);});
+    //changement de la valeur de cfa
+    document.getElementById('cfa').addEventListener('change',function(){document.getElementById('euro').value=Math.round(document.getElementById('cfa').value / 655,957);});
+}
+//eventlistener sur le poids
+if (document.getElementById('tabpoidsvolume')) {
+    //changement de la valeur des dimensions
+	document.getElementById('largeur').addEventListener('change',poidsVolume);
+    document.getElementById('longueur').addEventListener('change',poidsVolume);
+    document.getElementById('hauteur').addEventListener('change',poidsVolume);
+	//changement du poids reel
+	document.getElementById('poids').addEventListener('change',poidsVolume);
+}
+</script>
+<!--<script>//afficherMois()</script>-->
+</body>
+</html>
