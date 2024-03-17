@@ -12,7 +12,7 @@
 	Elle est personnalisable sur demande, pour changer les couleurs ou afficher un logo ou bien ajuster le catalogue des produits.
 	Cette démo est une brique d'un système complet, global, gérable en ligne pour gérer les achats, la paie, la comptabilité.
 	Scalable pour un établissement ou une chaine internationale, pour tous les domaines d'activité : hotel, restaurant, activités sportives.
-	Contact par mail : dev.vincenth@gmail.com, par whatsApp : +33 7 60 31 72 62">
+	Contact par mail : dev.vincenth@gmail.com, par whatsApp/Signal : +33 7 60 31 72 62">
 	<meta name="robots" content="noindex, nofollow">
 	<link rel="stylesheet" href="./css/w3.css">
 	<link rel="stylesheet" href="./css/w3color.css">
@@ -58,6 +58,9 @@
 	<div class="w3-container w3-center w3-padding-16 w3-margin w3-blue w3-card" id="parametres">
 		<a href="./parametres.htm" class="">Gérer l'application</a>
 	</div>
+	<div class="w3-container w3-center w3-padding-16 w3-margin w3-blue w3-card" id="parametres">
+		<a href="./calculettes.htm" class="">Calculettes</a>
+	</div>
 </div>
 <!-- End page content -->
 </div>
@@ -99,5 +102,11 @@
 <!-- pwa -->
 <script src="./app.js"></script>
 <script src="./eventListener.js"></script>
+<script>
+//clic sur aide pour afficher la modale d'aide
+document.getElementById('aide').addEventListener('click',function(){document.getElementById('modaleAide').style.display='block';});
+//clic sur le x pour fermer la modale de aide
+document.getElementById('fermerAide').addEventListener('click',function(){document.getElementById('modaleAide').style.display='none';});
+</script>
 </body>
 </html>
