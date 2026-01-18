@@ -47,12 +47,11 @@
 <!-- dates -->
 <div id="dates" class="w3-container w3-row w3-center">
 <fieldset><legend>Dates d'expédition à venir</legend>
-<span>Toucher les jours à activer</span>
+<span>Toucher les jours pour dés-activer</span>
 <table id="calendrier" class="w3-table-all-2">
 <tr>
 	<th colspan=7>
-		<!-- <a href="#" class="w3-margin-right" onclick="afficherMois(-1)">&lt;</a>mois<a href="#" class="w3-margin-left" onclick="afficherMois(+1)">&gt;</a> -->
-		<!-- afficherMois() permet de rendre dynamique le bon nomùbre de jour en fonction du mois et de l'année -->
+		<!-- afficherMois() permet de rendre dynamique le bon nombre de jour en fonction du mois et de l'année -->
 		<select size=1 id="mois" onchange="afficherMois();cocherDatesActives()">
 			<option value="0">Janvier</option>
 			<option value="1">Février</option>
@@ -68,10 +67,13 @@
 			<option value="11">Décembre</option>
 		</select>
 		<select size=1 id="annee" onchange="afficherMois();cocherDatesActives()">
-			<option value="2022">2022</option>
-			<option value="2023">2023</option>
-			<option value="2024">2024</option>
-			<option value="2025">2025</option>
+			<!-- rendre cette liste dynamique au chargement afin de toujours commencer avec l'année en cours sélectionnée et d'affichier de A-1 jusqu'à A+10 -->
+			<!-- <script type="javascript" src="liste_annee.js" /> -->
+			<option value="2026">2026</option>
+			<option value="2027">2027</option>
+			<option value="2028">2028</option>
+			<option value="2029">2029</option>
+			<option value="2030">2030</option>
 		</select>
 	</th>
 </tr>
@@ -209,4 +211,5 @@ for (quelleannee;quelleannee==max;quelleannee++) {
 <script>afficherMois()</script>
 <script src="./afterloadparam.js"></script>
 </body>
+
 </html>
